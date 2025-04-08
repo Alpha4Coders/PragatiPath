@@ -1,0 +1,27 @@
+{
+  "name": "pragatipath",
+  "version": "1.0.0",
+  "description": "An AI enabled farmer education and enhance project to improve farming industry in India",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikashgupta16/PragatiPath.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "alpha4",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/vikashgupta16/PragatiPath/issues"
+  },
+  "homepage": "https://github.com/vikashgupta16/PragatiPath#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0"
+  }
+}
