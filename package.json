@@ -22,8 +22,9 @@
   "homepage": "https://github.com/vikashgupta16/PragatiPath#readme",
   "dependencies": {
     "@clerk/express": "^1.4.2",
+    "cookie-session": "^2.1.0",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "mongodb": "^6.15.0"
+    "mongoose": "^8.13.2"
   }
 }
