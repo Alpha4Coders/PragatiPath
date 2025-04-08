@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const clerk = require('@clerk/express');
 
 class MongooseConnect {
     static isConnected = false;
@@ -41,13 +42,13 @@ class UserDB {
             req.session.accountedFor = true;
 
             try {
-                const userDbStore = await UserDBHandler.Users.findOne({
+                const userDbStore = await UserDB.Users.findOne({
                     userID: req.auth.userId
                 });
 
                 if (userDbStore === null) {
                     const userData = await clerk.clerkClient.users.getUser(req.auth.userId);
-                    const userStore = new UserDBHandler.Users({
+                    const userStore = new UserDB.Users({
                         userId: req.auth.userId,
                         name: userData.username,
                         enrolledCourses: [],
@@ -57,7 +58,7 @@ class UserDB {
                     await userStore.save();
                 }
             } catch (error) {
-                console.log("[UserDBHandler Error] userAuthMiddleWare failed to authenticate user", error);
+                console.log("[UserDB Error] userAuthMiddleWare failed to authenticate user", error);
             }
         }
 

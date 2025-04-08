@@ -1,6 +1,6 @@
 // base modules -------------------
 const crypto = require('crypto');
-const session = require('express-session');
+const session = require('cookie-session');
 
 // custom modules ----------------
 const { MongooseConnect, UserDB } = require('./DBHandler.js');
