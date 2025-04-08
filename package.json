@@ -23,6 +23,7 @@
   "dependencies": {
     "@clerk/express": "^1.4.2",
     "dotenv": "^16.4.7",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongodb": "^6.15.0"
   }
 }
