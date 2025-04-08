@@ -1,12 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PragatiPath</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/plant.png" type="image/png">
 </head>
+
 <body>
+    <header>
+        <nav class="landingPageNavbar">
+            <ul>
+                <li><a href="#" class="logo">PragatiPath</a></li>
+                <li><button class="logIN-btn"
+                        onclick="window.location.href = window.location.origin + '/public/Accounts/signin.html'">Log
+                        in</button></li>
+                <li><button class="signUP-btn"
+                        onclick="window.location.href = window.location.origin + '/public/Accounts/signup.html'">Sign  
+                        up</button></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <div class="hero-text">
+                <p>Welcome to</p>
+                <img src="assets/PragatiPath.png" alt="PragatiPath">
+            </div>
+            <div class="cover-crop"><img src="assets/cropA.png" alt="GLOBE"></div>
+            <div class="hero-desc">
+                <p>An e-learning platform dedicated to empowering rural communities with essential skills.</p>
+                <p>Learn modern farming techniques, digital literacy, and entrepreneurship to build a better future.</p>
+            </div>
+            <div class="hero-cta">
+                 <a href="../../private/"> <!--will be fixed after private section done -->
+                    <button>Let's dive in &rarr;</button>
+                </a>
+            </div>
+        </section>
+        <section id="FAQ">
+            <div class="FAQ-container">
+                <h1>Frequently Asked Questions (FAQs)</h1>
+        
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is this e-learning platform about?</span>
+                        <span class="faq-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#000000">
+                                <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Our platform is designed to empower rural communities by providing access to quality education in modern farming practices, digital skills, and entrepreneurship to help create sustainable livelihoods.
+                        </p>
+                    </div>
+                </div>
+        
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Who can join the training programs?</span>
+                        <span class="faq-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#000000">
+                                <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Anyone from rural areas with a desire to learn and grow is welcome! Whether you're a farmer, student, homemaker, or aspiring entrepreneur, our courses are made for all levels.
+                        </p>
+                    </div>
+                </div>
+        
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What topics are covered in the courses?</span>
+                        <span class="faq-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#000000">
+                                <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            We cover modern farming techniques, organic farming, use of agri-tech tools, basic computer skills, smartphone usage, financial literacy, and starting small-scale businesses.
+                        </p>
+                    </div>
+                </div>
+        
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do I need internet access to use the platform?</span>
+                        <span class="faq-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#000000">
+                                <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Yes, a basic internet connection is needed to access the learning content. However, we're working on downloadable modules for areas with low connectivity.
+                        </p>
+                    </div>
+                </div>
+        
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is the platform available in regional languages?</span>
+                        <span class="faq-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#000000">
+                                <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Absolutely! We provide content in multiple regional languages to make learning more comfortable and accessible for all learners.
+                        </p>
+                    </div>
+                </div>
+        
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Are the courses free of cost?</span>
+                        <span class="faq-arrow">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="#000000">
+                                <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>
+                            Yes, all our courses are completely free to ensure that every learner in rural areas has equal access to quality education and skill development.
+                        </p>
+                    </div>
+                </div>
+        
+            </div>
+        </section>
+        
+    </main>
+    <!-- footer  -->
+    <footer class="footer container" id="footer">
+        <!-- footer link  -->
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <p>|</p>
+            <a href="#">Terms of use</a>
+            <p>|</p>
+            <a href="#">Disclaimer</a>
+        </div>
+        <!-- copyright  -->
+        <p>&copy; 2025 All rights reserved.</p>
+        <p>Alpha Coders</p>
+        <img src="assets/PragatiPath.png" alt="footer-img">
+    </footer>
     <script src="script.js"></script>
 </body>
+
 </html>
