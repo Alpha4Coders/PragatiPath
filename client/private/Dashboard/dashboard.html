@@ -240,35 +240,33 @@
         </section>
         <section id="ai-toolkit">
             <div class="ai-toolkit-heading">
-                <h1>AI Agriculture Toolkit</h1>
-                <p>Empowering farmers with smart tools</p>
+              <h1>AI Agriculture Toolkit</h1>
+              <p>Empowering farmers with smart tools</p>
             </div>
             <div class="ai-toolkit-container">
-                <div class="card">
-                    <h2>Plant Disease Detection</h2>
-                    <input type="file" id="upload">
-                    <img id="image" width="224" height="224" alt="Uploaded Image" />
-                    <div id="prediction">Prediction will appear here</div>
-                </div>
-
-                <div class="card" id="weather-card">
-                    <h2>Live Weather</h2>
-                    <!-- <div class="loader" style="display: none;"></div> -->
-                    <button onclick="getWeather()">Get Weather</button>
-                    <div id="weatherResult"></div>
-                </div>
-
-                <div class="card">
-                    <h2>Field Map & Location</h2>
-                    <div id="map"></div> <!-- remove inline height style -->
-                </div>
-
-                <div class="card">
-                    <h2>Farming Suggestions</h2>
-                    <button onclick="getFarmingSuggestions()">Get Suggestions</button>
-                    <div id="suggestions">Smart farming tips will appear here!</div>
-                </div>
-        </section>
+              <div class="card">
+                <h2>Plant Disease Detection</h2>
+                <input type="file" id="upload" class="file-input">
+                <img id="image" width="224" height="224" alt="Uploaded Image" />
+                <div id="prediction">Prediction will appear here</div>
+              </div>
+          
+              <div class="card">
+                <h2>Live Weather</h2>
+                <button onclick="getWeather()">Get Weather</button>
+                <div id="weatherResult"></div>
+              </div>
+          
+              <div class="card">
+                <h2>Field Map & Location</h2>
+                <div id="map"></div>
+              </div>
+          
+              <div class="card">
+                <h2>Farming Suggestions</h2>
+                <button onclick="getFarmingSuggestions()">Get Suggestions</button>
+                <div id="suggestions">Smart farming tips will appear here!</div>
+              </div>
         <!-- contact  -->
     <section class="contact conatiner" id="contact">
         <h2 class="heading">Contact</h2>

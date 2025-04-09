@@ -760,109 +760,112 @@ button:hover {
   background-color: #45a049;
 }
 
-/* ai toolkit styling */
 #ai-toolkit {
   font-family: 'Poppins', sans-serif;
-  margin: 0;
+  background: #fefae0;
+  color: #2e7d32;             /*AI Toolkit*/
+  min-height: 100vh;
   padding: 0;
-  background: #f9f9f9;
-  color: #333;
+  margin: 0;
 }
 
+
 .ai-toolkit-heading {
-  background: #4CAF50;
-  color: white;
+  background: #fefae0;
+  backdrop-filter: blur(8px);
+  color: #1b5e20;
+  text-align: center;                 /* Heading */
   padding: 2rem 1rem;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #81c784;
+  transition: all 0.5s ease;
 }
 
 .ai-toolkit-heading h1 {
+  font-size: 3rem;
   margin: 0;
-  font-size: 2.5rem;
+  letter-spacing: 1px;
 }
 
 .ai-toolkit-heading p {
-  margin: 0.5rem 0 0;
-  font-size: 1.2rem;
-  opacity: 0.9;
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  opacity: 0.8;
 }
+
 
 .ai-toolkit-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));      /* Toolkit Container */
+  gap: 2rem;
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
 }
 
+
 .card {
-  background: white;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(139, 195, 74, 0.4);
+  border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);      /*Card*/
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(139, 195, 74, 0.4);
+  border-color: #66bb6a;
 }
 
+/* Card Title */
 .card h2 {
   margin-top: 0;
-  font-size: 1.6rem;
-  color: #4CAF50;
+  font-size: 1.8rem;
+  color: #2e7d32;
+  position: relative;
+  z-index: 1;
 }
 
-.ai-toolkit-container button {
-  background: #4CAF50;
-  color: white;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 0.8rem;
-  transition: background 0.3s;
-}
-
-.ai-toolkit-container button:hover {
-  background: #45A049;
-}
-
+.ai-toolkit-container button,
 input[type="text"],
 input[type="file"] {
-  width: 100%;
-  padding: 0.6rem;
-  margin-top: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid #66bb6a;
+  color: #2e7d32;
+  padding: 0.6rem 1.2rem;
   font-size: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-#prediction {
+.ai-toolkit-container button:hover,
+input[type="file"]:hover {
+  background: rgba(76, 175, 80, 0.4);
+  transform: scale(1.03);
+}
+
+#prediction, #weatherResult, #suggestions {
   margin-top: 1rem;
   font-weight: 600;
-  color: #555;
-}
-
-#weatherResult {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: #333;
+  color: #388e3c;
 }
 
 #map {
-  height: 200px;
-  border-radius: 8px;
+  height: 220px;
+  border-radius: 12px;
   margin-top: 1rem;
+  border: 2px solid #66bb6a;
 }
 
 .loader {
-  border: 6px solid #f3f3f3;
-  border-top: 6px solid #4CAF50;
+  border: 5px solid #e0f2f1;
+  border-top: 5px solid #66bb6a;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -872,43 +875,38 @@ input[type="file"] {
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Contact Form Styling */
 .contact-form {
   max-width: 600px;
   margin: 2rem auto;
-  padding: 2rem; /* Added padding for clear edges */
-  border: 2px solid #ddd; /* Soft border for visible edges */
-  border-radius: 12px; /* Rounded corners for smoothness */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-  background: #fff; /* Clear background */
+  padding: 2rem; 
+  border: 2px solid #ddd; 
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  background: #fff; 
 }
 
 /* Input Fields */
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 12px; /* Padding for better visibility */
-  margin-bottom: 1rem; /* Space between inputs */
-  border: 1px solid #aaa; /* Slightly darker border for clarity */
-  border-radius: 8px; /* Rounded input edges */
-  font-size: 16px; /* Larger font for readability */
-  box-sizing: border-box; /* Include padding in width */
+  padding: 12px; 
+  margin-bottom: 1rem; 
+  border: 1px solid #aaa; 
+  border-radius: 8px; 
+  font-size: 16px;
+  box-sizing: border-box; 
 }
 
 /* Focus Effect */
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border: 2px solid #6ee8f5; /* Highlight when focused */
+  border: 2px solid #6ee8f5; 
   box-shadow: 0 0 8px rgb(86, 159, 205);
 }
 
