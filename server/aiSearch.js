@@ -1,4 +1,4 @@
-const axios = require('axios');
+const fetch = require('node-fetch');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const dotenv = require('dotenv');
@@ -24,6 +24,20 @@ async function endpoint_geminiYoutubeSearch(req, res) {
     res.send(result.response.text());
 }
 
+async function endpoint_openWeatherAPI(req, res)
+{
+    const { lat, lon } = req.params;
+    const wres = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHER_API_KEY}&units=metric`);
+    const data = await wres.json();
+    res.json({
+        name: data.name,
+        weather: data.weather[0].description,
+        temp: data.main.temp,
+        humidity: data.main.humidity,
+        wind: data.wind.speed
+    });
+}
+
 class GeminiChatBot
 {    
     constructor() {
@@ -47,6 +61,7 @@ class GeminiChatBot
 }
 
 module.exports = {
+    endpoint_openWeatherAPI,
     endpoint_geminiYoutubeSearch,
     GeminiChatBot
 };
