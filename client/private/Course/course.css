@@ -1,0 +1,118 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Basic Styles */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  /* Header */
+  .header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 0;
+  }
+  
+  .header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+  }
+  
+  .header nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .header nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Courses Section */
+  .courses-main {
+    padding: 2rem 20px;
+    max-width: 1100px;
+    margin: auto;
+  }
+  
+  .courses-main h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #4CAF50;
+  }
+  
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .course-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .course-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .course-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .course-card h3 {
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .course-card p {
+    padding: 0 1rem 1rem;
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  .enroll-btn {
+    display: block;
+    width: 80%;
+    margin: 1rem auto;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .enroll-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
