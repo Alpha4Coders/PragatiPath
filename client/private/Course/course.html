@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PragatiPath</title>
   <link rel="stylesheet" href="course.css">
+  <link rel="stylesheet" href="../Chat-Bot/chat-bot.css">
+
 </head>
 <body>
 
@@ -58,14 +60,22 @@
         <p>Start farming in small spaces — rooftops, balconies, and more.</p>
         <button class="enroll-btn">Enroll Now</button>
       </div>
-
     </div>
-
+    <!-- Chatbot Integration -->
+ <div id="chat-bubble">💬</div>
+ <div id="chat-label">Need Help?</div>
+ <div id="chat-wrapper">
+     <div id="chat-container"></div>
+     <div id="suggestions"></div>
+     <div id="input-container">
+         <input type="text" id="message-input" placeholder="How can I help you?">
+         <button id="btn">Send</button>
+     </div>
   </main>
 
   <footer class="footer">
         <p>&copy; 2025 AgriLearn. All rights reserved.</p>
   </footer>
-
+  <script src="../Chat-Bot/chat-bot.js" defer></script>
 </body>
 </html>
