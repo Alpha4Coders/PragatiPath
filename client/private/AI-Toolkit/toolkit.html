@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI Agriculture Toolkit - MobileNetV2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Agriculture Toolkit</title>
   <link rel="stylesheet" href="../AI-Toolkit/toolkit.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
 </head>
 
 <body>
-
-  <h1>AI Agriculture Toolkit - Plant Detection (MobileNetV2)</h1>
+  <h1>AI Agriculture Toolkit</h1>
   <input type="file" id="upload" accept="image/*">
   <br>
   <img id="image" src="" alt="Upload an Image">
@@ -32,13 +33,15 @@
     <div class="card" id="plant-detection-card">
       <h2>Plant Disease Detection</h2>
       <input type="file" id="upload" accept="image/*">
+      <button onclick="predictImage()">Predict</button>
       <img id="image" src="" alt="Upload an Image">
-      <div id="prediction">Prediction will appear here</div>
+      <div id="prediction">Prediction Result</div>
     </div>
 
     <!--Weather Card -->
     <div class="card" id="weather-card">
         <h2>Live Weather</h2>
+        <div class="loader"></div>
         <input type="text" id="cityInput" placeholder="Enter City">
         <button onclick="getWeather()">Get Weather</button>
         <div id="weatherResult"></div>
@@ -62,7 +65,6 @@
 
 </body>
 </html>
-
   <script src="../AI-Toolkit/toolkit.js"></script>
 </body>
 </html>

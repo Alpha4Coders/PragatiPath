@@ -1,6 +1,6 @@
 let model;
 
-// 1. Load MobileNetV2 model
+// Load MobileNetV2 model
 async function loadModel() {
   model = await tf.loadGraphModel(
     'https://tfhub.dev/google/tfjs-model/imagenet/mobilenet_v2_100_224/classification/3/default/1',
@@ -11,7 +11,7 @@ async function loadModel() {
 
 loadModel();
 
-// 2. Handle file upload
+// Handle file upload
 const upload = document.getElementById('upload');
 const img = document.getElementById('image');
 const predictionText = document.getElementById('prediction');
@@ -27,11 +27,9 @@ upload.addEventListener('change', async (e) => {
       .expandDims();
 
     const predictions = await model.predict(tensor).data();
-    
     const topIdx = predictions.indexOf(Math.max(...predictions));
     
    // --- FETCH WEATHER BASED ON USER LOCATION ---
-
    function getWeather(lat, lon) {
     const apiKey = OPENWEATHER_API_KEY;
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
@@ -59,10 +57,7 @@ upload.addEventListener('change', async (e) => {
         weatherDiv.innerHTML = '<p>Failed to load weather data.</p>';
     });
    }
-  
-  // --- INITIALIZE MAP ---
-  
-  function initMap(lat, lon) {
+   function initMap(lat, lon) {
     const map = L.map('map').setView([lat, lon], 10);
   
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -91,7 +86,6 @@ upload.addEventListener('change', async (e) => {
     }
   }
    getLocationAndStart();
-
-    predictionText.innerHTML = `Predicted: ${topIdx}`;
+  predictionText.innerHTML = `Predicted: ${topIdx}`;
 }
 });
