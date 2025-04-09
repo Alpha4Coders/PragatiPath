@@ -66,6 +66,10 @@ header {
   cursor: pointer;
 }
 
+.logout-btn:hover {
+  background-color: transparent;
+}
+
 main {
   z-index: 0;
 }
