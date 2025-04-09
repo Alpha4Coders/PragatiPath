@@ -4,7 +4,7 @@ const session = require('cookie-session');
 
 // custom modules ----------------
 const { MongooseConnect, UserDB, CourseDB } = require('./DBHandler.js');
-const { endpoint_geminiYoutubeSearch } = require('./aiSearch.js');
+const { endpoint_geminiYoutubeSearch, GeminiChatBot } = require('./aiSearch.js');
 
 // express ----------------------------
 const express = require('express');
@@ -31,6 +31,9 @@ MongooseConnect.connect(process.env.MONGO_URI);
 const userDBHandler = new UserDB();
 const courseDBHandler = new CourseDB();
 
+// chatbots --------------------------
+const geminiChatBot = new GeminiChatBot();
+
 // public server -------------------
 app.use('/public', express.static('client/public'));
 
@@ -51,6 +54,7 @@ app.get('/private/api/getcourses', courseDBHandler.endpoint_getCourseList.bind(c
 app.get('/private/api/getcourse/:courseName', courseDBHandler.endpoint_getCourse.bind(courseDBHandler));
 
 app.get('/private/api/gemini', endpoint_geminiYoutubeSearch);
+app.post('/private/api/gemini/chat', express.json(), geminiChatBot.endpoint_chatbot.bind(geminiChatBot));
 
 app.listen(+process.env.PORT, () => {
     console.log(`Server is running on port http://localhost:${process.env.PORT}`);
