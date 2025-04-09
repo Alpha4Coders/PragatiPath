@@ -20,7 +20,7 @@
     padding: 1rem 0;
   }
   
-  .header .container {
+  .header .courses-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,7 +39,7 @@
   .header nav a:hover {
     text-decoration: underline;
   }
-  /* Mobile Nav Container */
+  /* Mobile Nav courses-container */
 .mobile-nav {
   display: none;
   position: relative;

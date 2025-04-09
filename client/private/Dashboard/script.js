@@ -456,3 +456,19 @@ window.addEventListener('load', async () => {
     loadNotes();
     setupChat();
 });
+
+function showSection(targetId) {
+    document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById(targetId).style.display = 'block';
+}
+
+const navLinks = document.querySelectorAll('.nav-anchor');
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-target');
+        showSection(targetId);
+    });
+});
