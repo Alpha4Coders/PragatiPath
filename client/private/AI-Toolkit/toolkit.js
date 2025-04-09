@@ -42,7 +42,8 @@ upload.addEventListener('change', async (e) => {
 
         const predictions = await model.predict(tensor).data();
         const topIdx = predictions.indexOf(Math.max(...predictions));
-        predictionText.textContent = `Predicted disease: ${classList[topIdx]}`;
+        const topPred = classList[topIdx].split('___');
+        predictionText.innerHTML = `<p>Predicted crop: ${topPred[0]}<br><br>Predicted disease: ${topPred[1]}</p>`;
     };
 });
 
