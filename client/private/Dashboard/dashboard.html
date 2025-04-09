@@ -53,7 +53,7 @@
                             </svg>
                         </span>
                     </a></li>
-                <li class="links"><a class="nav-anchor" href="#" data-target="contact-us"
+                <li class="links"><a class="nav-anchor" href="#contact-container" data-target="contact"
                         style="text-decoration: none;">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -269,16 +269,30 @@
                     <div id="suggestions">Smart farming tips will appear here!</div>
                 </div>
         </section>
-        <section id="contact-us" class="contact-section">
-            <h2 class="heading">Contact</h2>
-            <form action="#" class="contact-form">
-                <input type="text" placeholder="Your Name" class="name" required>
-                <input type="email" placeholder="Email address" class="email" required>
-                <textarea cols="30" rows="10" placeholder="Enter Your Message" class="message" required></textarea>
-                <button type="submit" class="send-btn">Send</button>
-            </form>
-        </section>
+        <!-- contact  -->
+    <section class="contact conatiner" id="contact">
+        <h2 class="heading">Contact</h2>
+        <!-- contact form  -->
+        <form action="" class="contact-form" id="conatct-form">
+            <input type="text" placeholder="Your Name" class="name" required>
+            <input type="email" name="" id="" placeholder="Email adress" class="email" required>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Enter Your Message" class="message" required></textarea>
+            <input type="submit" value="Send" class="send-btn">
+        </form>
+    </section>
     </main>
+</section>
+<!-- email js  -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+(function(){
+  emailjs.init({
+    publicKey: "jS_OjCoYjCk6NEZxd",
+  });
+})();
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
     <script src="script.js"></script>
     <script src="../Chat-Bot/chat-bot.js" defer></script>
