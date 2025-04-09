@@ -43,6 +43,20 @@ app.use('/private', clerk.requireAuth({ signInUrl: process.env.CLERK_SIGN_IN_URL
     userDBHandler.middleware_userAuth.bind(userDBHandler),
     express.static('client/private'));
 
+app.get('/private/logout', async (req, res) => {
+    const sessionId = clerk.getAuth(req).sessionId;
+    if (!sessionId) {
+        res.json({ error: "No session ID found" });
+        return;
+    }
+        
+    try {
+        await clerk.clerkClient.sessions.revokeSession(sessionId);
+        res.redirect('/public/Accounts/signin.html');
+    } catch (error) {
+        res.json({ error: "Failed to revoke session, please refresh the page" });
+    }
+});
 
 app.get('/api/userinfo', clerk.requireAuth(), userDBHandler.endpoint_userInfo.bind(userDBHandler));
 app.post('/api/updcourseprog', clerk.requireAuth(), express.json(), userDBHandler.endpoint_updateCourseProgress.bind(userDBHandler));

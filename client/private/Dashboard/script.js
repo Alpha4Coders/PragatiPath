@@ -285,3 +285,8 @@ navLinks.forEach(link => {
         showSection(targetId);
     });
 });
+
+async function logout() {
+    await Clerk.signOut();
+    window.location.href = window.location.origin + '/private/logout';
+}
