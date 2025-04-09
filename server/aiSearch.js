@@ -16,14 +16,17 @@ async function endpoint_geminiYoutubeSearch(req, res) {
         return;
     }
 
-    const model = ai.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const model = ai.getGenerativeModel({ model: 'gemini-1.5-flash-002' });
 
     const result = await model.generateContent(`List out the top 5 relevant youtube videos for the query "${query}" in a JSON format. The JSON should contain the title.`);
 
     console.log(result, result.response);
 
-
     res.send(result.response.text());
+}
+
+async function endpoint_youtubePlaylist(req, res) {
+    
 }
 
 async function endpoint_openWeatherAPI(req, res) {

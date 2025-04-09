@@ -158,7 +158,7 @@ class CourseDB {
     static courseSchema = new mongoose.Schema({
         name: { type: String, required: true, unique: true },
         description: { type: String, required: true },
-        videos: { type: [String], required: true },
+        playlist: { type: String, required: true }
     });
 
     static Courses = mongoose.model('courses', CourseDB.courseSchema);
