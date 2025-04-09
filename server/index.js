@@ -31,9 +31,6 @@ MongooseConnect.connect(process.env.MONGO_URI);
 const userDBHandler = new UserDB();
 const courseDBHandler = new CourseDB();
 
-// chatbots --------------------------
-const geminiChatBot = new GeminiChatBot();
-
 // public server -------------------
 app.use('/public', express.static('client/public'));
 
@@ -54,7 +51,7 @@ app.get('/api/getcourses', clerk.requireAuth(), courseDBHandler.endpoint_getCour
 app.get('/api/getcourse/:courseName', clerk.requireAuth(), courseDBHandler.endpoint_getCourse.bind(courseDBHandler));
 
 app.get('/api/gemini/youtube', endpoint_geminiYoutubeSearch);
-app.post('/api/gemini/chat', express.json(), geminiChatBot.endpoint_chatbot.bind(geminiChatBot));
+app.post('/api/gemini/chat', express.json(), GeminiChatBot.endpoint_chatbot);
 
 app.get('/api/openweather/:lat/:lon', endpoint_openWeatherAPI);
 

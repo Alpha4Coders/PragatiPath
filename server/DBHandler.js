@@ -21,6 +21,7 @@ class UserDB {
     static userSchema = new mongoose.Schema({
         userId: { type: String, required: true, unique: true },
         name: { type: String, required: true },
+        fullName: { type: String, required: true },
         enrolledCourses: {
             type: [
                 {
@@ -38,7 +39,7 @@ class UserDB {
 
     static Users = mongoose.model('users', UserDB.userSchema);
 
-    async middleware_userAuth(req, res, next) {
+    async middleware_userAuth(req, res, next) {        
         if (!req.session.accountedFor) {
             req.session.accountedFor = true;
 
@@ -48,10 +49,11 @@ class UserDB {
                 });
 
                 if (userDbStore === null) {
-                    const userData = await clerk.clerkClient.users.getUser(req.auth.userId);
+                    const userData = await clerk.clerkClient.users.getUser(req.auth.userId);                    
                     const userStore = new UserDB.Users({
                         userId: req.auth.userId,
                         name: userData.username,
+                        fullName: userData.first_name + ' ' + userData.last_name,
                         enrolledCourses: [],
                         completedCourses: []
                     });
