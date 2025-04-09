@@ -151,7 +151,53 @@ class UserDB {
     }
 }
 
+class CourseDB {
+    static courseSchema = new mongoose.Schema({
+        name: { type: String, required: true, unique: true },
+        description: { type: String, required: true },
+        videos: { type: [String], required: true },
+    });
+
+    static Courses = mongoose.model('courses', CourseDB.courseSchema);
+
+    async endpoint_getCourseList(req, res)
+    {
+        try {
+            const courses = await CourseDB.Courses.find({}, { _id: 0, __v: 0 });
+            res.json(courses);
+        } catch (error) {
+            console.log("[CourseDB Error] endpoint_getCourseList failed to fetch course list", error);
+            res.json({ error: "Internal server error" });
+        }
+    }
+
+    async endpoint_getCourse(req, res) {
+        try {
+            const { courseName } = req.params;
+
+            if (!courseName) {
+                res.json({ error: "Course name is required" });
+                return;
+            }
+
+            const course = await CourseDB.Courses.findOne({ name: courseName }, { _id: 0, __v: 0 });
+
+            if (course === null) {
+                res.json({ error: "Course not found" });
+                return;
+            }
+
+            res.json(course);
+        } catch (error) {
+            console.log("[CourseDB Error] endpoint_getCourse failed to fetch course", error);
+            res.json({ error: "Internal server error" });
+        }
+    }
+
+}
+
 module.exports = {
     MongooseConnect,
-    UserDB
+    UserDB,
+    CourseDB
 };

@@ -3,7 +3,8 @@ const crypto = require('crypto');
 const session = require('cookie-session');
 
 // custom modules ----------------
-const { MongooseConnect, UserDB } = require('./DBHandler.js');
+const { MongooseConnect, UserDB, CourseDB } = require('./DBHandler.js');
+const { endpoint_geminiYoutubeSearch } = require('./aiSearch.js');
 
 // express ----------------------------
 const express = require('express');
@@ -28,6 +29,7 @@ app.use(clerk.clerkMiddleware());
 MongooseConnect.connect(process.env.MONGO_URI);
 
 const userDBHandler = new UserDB();
+const courseDBHandler = new CourseDB();
 
 // public server -------------------
 app.use('/public', express.static('client/public'));
@@ -43,7 +45,12 @@ app.use('/private', clerk.requireAuth({ signInUrl: process.env.CLERK_SIGN_IN_URL
 
 
 app.get('/private/api/userinfo', userDBHandler.endpoint_userInfo.bind(userDBHandler));
-app.get('/private/api/updcourseprog', userDBHandler.endpoint_updateCourseProgress.bind(userDBHandler));
+app.post('/private/api/updcourseprog', express.json(), userDBHandler.endpoint_updateCourseProgress.bind(userDBHandler));
+
+app.get('/private/api/getcourses', courseDBHandler.endpoint_getCourseList.bind(courseDBHandler));
+app.get('/private/api/getcourse/:courseName', courseDBHandler.endpoint_getCourse.bind(courseDBHandler));
+
+app.get('/private/api/gemini', endpoint_geminiYoutubeSearch);
 
 app.listen(+process.env.PORT, () => {
     console.log(`Server is running on port http://localhost:${process.env.PORT}`);

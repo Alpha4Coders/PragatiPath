@@ -32,4 +32,4 @@ function googleTranslateElementInit() {
     }
   }
   
-  window.onload = autoTranslate;
+  window.onload = autoTranslate;
