@@ -1,5 +1,7 @@
 const fetch = require('node-fetch');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { LRUCache } = require('lru-cache');
+const crypto = require('node:crypto');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -38,13 +40,29 @@ async function endpoint_openWeatherAPI(req, res) {
 }
 
 class GeminiChatBot {
-    constructor() {
-        this.model = ai.getGenerativeModel({ model: 'gemini-2.0-flash' });
-        this.chat = this.model.startChat();
-        this.chat.sendMessage("You are a helpful assistant answering questions to a farmer requiring help in agriculture in our \"PragatiPath\" farming education site");
-    }
+    static botMap = new LRUCache({
+        max: 1000,
+        maxAge: 1000 * 60 * 60 * 24, // 1 day
+    });
 
-    async endpoint_chatbot(req, res) {
+    constructor() {
+        this.model = ai.getGenerativeModel({ model: 'gemini-1.5-flash-002' });
+        this.chat = this.model.startChat();
+    }
+    
+    static async endpoint_chatbot(req, res) {
+        if (!req.session.botID) {
+            req.session.botID = crypto.randomUUID();
+        }
+        
+        let bot = GeminiChatBot.botMap.get(req.session.botID);
+        if (!bot) {
+            bot = new GeminiChatBot();
+            await bot.chat.sendMessage("You are a helpful assistant answering questions to a farmer requiring help in agriculture in our \"PragatiPath\" farming education site");
+
+            GeminiChatBot.botMap.set(req.session.botID, bot);
+        }
+
         const query = req.body.query;
 
         if (!query) {
@@ -52,7 +70,7 @@ class GeminiChatBot {
             return;
         }
 
-        const msg = await this.chat.sendMessage(query);
+        const msg = await bot.chat.sendMessage(query);
         res.json({ response: msg.response.text() });
     }
 }
