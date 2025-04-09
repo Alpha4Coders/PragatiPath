@@ -11,6 +11,19 @@
 </head>
 <body>
 
+  <!-- Mobile Sidebar Toggle (Move this here) -->
+  <div class="mobile-nav">
+    <div id="hamburger">&#9776;</div> 
+    <aside id="sidebar">
+      <a href="#" class="close-btn">&times;</a>
+      <a href="#">Home</a>
+      <a href="#">Courses</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </aside>
+    <div id="sidebar-backdrop"></div>
+  </div>
+
   <!-- Header -->
   <header class="header">
     <div class="container">
@@ -24,6 +37,7 @@
     </div>
   </header>
 
+
   <!-- Courses Section -->
   <main class="container courses-main">
     <h2>Our Courses</h2>
@@ -32,7 +46,7 @@
       
       <!-- Course Card 1 -->
       <div class="course-card">
-        <img src="" alt="Organic Farming">
+        <img src="../assets/organic.jpeg" alt="Organic Farming">
         <h3>Organic Farming</h3>
         <p>Grow food sustainably with modern organic techniques.</p>
         <button class="enroll-btn">Enroll Now</button>
@@ -40,7 +54,7 @@
 
       <!-- Course Card 2 -->
       <div class="course-card">
-        <img src="" alt="Permaculture Design">
+        <img src="../assets/permaculture.jpeg" alt="Permaculture Design">
         <h3>Permaculture Design</h3>
         <p>Learn holistic farming methods and sustainable designs.</p>
         <button class="enroll-btn">Enroll Now</button>
@@ -48,7 +62,7 @@
 
       <!-- Course Card 3 -->
       <div class="course-card">
-        <img src="" alt="Soil Health Management">
+        <img src="../assets/soil.jpg" alt="Soil Health Management">
         <h3>Soil Health Management</h3>
         <p>Master techniques to enhance and maintain soil fertility.</p>
         <button class="enroll-btn">Enroll Now</button>
@@ -56,7 +70,7 @@
 
       <!-- Course Card 4 -->
       <div class="course-card">
-        <img src="" alt="Urban Farming">
+        <img src="../assets/urban.jpg" alt="Urban Farming">
         <h3>Urban Farming</h3>
         <p>Start farming in small spaces — rooftops, balconies, and more.</p>
         <button class="enroll-btn">Enroll Now</button>
@@ -64,7 +78,7 @@
     </div>
     <!-- Chatbot Integration -->
  <div id="chat-bubble">💬</div>
- <div id="chat-label">Need Help?</div>
+ <!-- <div id="chat-label">Need Help?</div> -->
  <div id="chat-wrapper">
      <div id="chat-container"></div>
      <div id="suggestions"></div>
@@ -77,6 +91,7 @@
   <footer class="footer">
         <p>&copy; 2025 PragatiPath. All rights reserved.</p>
   </footer>
+  <script src="course.js"></script>
   <script src="../Chat-Bot/chat-bot.js" defer></script>
 </body>
 </html>
