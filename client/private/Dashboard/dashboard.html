@@ -32,7 +32,8 @@
                             </svg>
                         </span>
                     </a></li>
-                <li class="links"><a class="nav-anchor" href="#" data-target="chat-bot" style="text-decoration: none;">
+                <li class="links"><a class="nav-anchor" href="#" data-target="ai-toolkit"
+                        style="text-decoration: none;">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                                 fill="#fefae0">
@@ -41,12 +42,13 @@
                             </svg>
                         </span>
                     </a></li>
-                <li class="links"><a class="nav-anchor" href="#" data-target="profile" style="text-decoration: none;">
+                <li class="links"><a class="nav-anchor" href="#" data-target="contact-us"
+                        style="text-decoration: none;">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                                 fill="#fefae0">
                                 <path
-                                    d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z" />
+                                    d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
                             </svg>
                         </span>
                     </a></li>
@@ -89,20 +91,20 @@
                 <div class="left-side">
                     <div class="my-courses">
                         <h2>My Courses</h2>
-                        <div class="course-cards">
-                            <div class="card">
+                        <div class="course-cards-container">
+                            <div class="dashboard-course-card">
                                 <img src="assets/course-img-1.jpg" alt="">
                                 <h2>Food and shelter in harmony</h2>
                                 <p>Explore the deep connection between tranditional cooking and vernacular architecture.
                                 </p>
                             </div>
-                            <div class="card">
+                            <div class="dashboard-course-card">
                                 <img src="assets/course-img-2.jpg" alt="">
                                 <h2>Building kitchens, Nourishing communities</h2>
                                 <p>Learn how to design effectve, eco-friendly rural kitchens mastering healthy cooking
                                     techniques.</p>
                             </div>
-                            <div class="card">
+                            <div class="dashboard-course-card">
                                 <img src="assets/course-img-3.jpg" alt="">
                                 <h2>Global culture through food and homes</h2>
                                 <p>Take a virtual journey across continents exploring how food and architecture reflect
@@ -177,9 +179,100 @@
                 </div>
             </div>
         </section>
+        <section id="courses">
+            <div class="courses-main">
+                <h2>Our Courses</h2>
+
+                <div class="courses-grid">
+
+                    <!-- Course Card 1 -->
+                    <div class="course-card">
+                        <img src="../assets/organic.jpeg" alt="Organic Farming">
+                        <h3>Organic Farming</h3>
+                        <p>Grow food sustainably with modern organic techniques.</p>
+                        <a href="#" style="text-decoration: none;"><button class="enroll-btn">Enroll Now</button></a>
+                    </div>
+
+                    <!-- Course Card 2 -->
+                    <div class="course-card">
+                        <img src="../assets/permaculture.jpeg" alt="Permaculture Design">
+                        <h3>Permaculture Design</h3>
+                        <p>Learn holistic farming methods and sustainable designs.</p>
+                        <a href="#" style="text-decoration: none;"><button class="enroll-btn">Enroll Now</button></a>
+                    </div>
+
+                    <!-- Course Card 3 -->
+                    <div class="course-card">
+                        <img src="../assets/soil.jpg" alt="Soil Health Management">
+                        <h3>Soil Health Management</h3>
+                        <p>Master techniques to enhance and maintain soil fertility.</p>
+                        <a href="#" style="text-decoration: none;"><button class="enroll-btn">Enroll Now</button></a>
+                    </div>
+
+                    <!-- Course Card 4 -->
+                    <div class="course-card">
+                        <img src="../assets/urban.jpg" alt="Urban Farming">
+                        <h3>Urban Farming</h3>
+                        <p>Start farming in small spaces — rooftops, balconies, and more.</p>
+                        <a href="#" style="text-decoration: none;"><button class="enroll-btn">Enroll Now</button></a>
+                    </div>
+                </div>
+                <!-- Chatbot Integration -->
+                <div id="chat-bubble">💬</div>
+                <!-- <div id="chat-label">Need Help?</div> -->
+                <div id="chat-wrapper">
+                    <div id="chat-container"></div>
+                    <div id="suggestions"></div>
+                    <div id="input-container">
+                        <input type="text" id="message-input" placeholder="How can I help you?">
+                        <button id="btn">Send</button>
+                    </div>
+                </div>
+        </section>
+        <section id="ai-toolkit">
+            <div class="ai-toolkit-heading">
+                <h1>AI Agriculture Toolkit</h1>
+                <p>Empowering farmers with smart tools</p>
+            </div>
+            <div class="ai-toolkit-container">
+                <div class="card">
+                    <h2>Plant Disease Detection</h2>
+                    <input type="file" id="upload">
+                    <img id="image" width="224" height="224" alt="Uploaded Image" />
+                    <div id="prediction">Prediction will appear here</div>
+                </div>
+
+                <div class="course-card" id="weather-card">
+                    <h2>Live Weather</h2>
+                    <!-- <div class="loader" style="display: none;"></div> -->
+                    <button onclick="getWeather()">Get Weather</button>
+                    <div id="weatherResult"></div>
+                </div>
+
+                <div class="course-card">
+                    <h2>Field Map & Location</h2>
+                    <div id="map"></div> <!-- remove inline height style -->
+                </div>
+
+                <div class="course-card">
+                    <h2>Farming Suggestions</h2>
+                    <button onclick="getFarmingSuggestions()">Get Suggestions</button>
+                    <div id="suggestions">Smart farming tips will appear here!</div>
+                </div>
+        </section>
+        <section id="contact-us" class="contact-section">
+            <h2 class="heading">Contact</h2>
+            <form action="#" class="contact-form">
+                <input type="text" placeholder="Your Name" class="name" required>
+                <input type="email" placeholder="Email address" class="email" required>
+                <textarea cols="30" rows="10" placeholder="Enter Your Message" class="message" required></textarea>
+                <button type="submit" class="send-btn">Send</button>
+            </form>
+        </section>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"></script>
     <script src="script.js"></script>
+    <script src="../Chat-Bot/chat-bot.js" defer></script>
 </body>
 
 </html>
