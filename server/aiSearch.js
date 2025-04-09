@@ -33,15 +33,15 @@ class GeminiChatBot
     }
 
     async endpoint_chatbot(req, res)
-    {
+    {        
         const query = req.body.query;
-
+        
         if (!query) {
             res.json({ error: "Query parameter is required." });
             return;
         }
-
-        const msg = this.chat.sendMessage(query);
+        
+        const msg = await this.chat.sendMessage(query);
         res.json({ response: msg.response.text() });
     }
 }

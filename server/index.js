@@ -47,14 +47,14 @@ app.use('/private', clerk.requireAuth({ signInUrl: process.env.CLERK_SIGN_IN_URL
     express.static('client/private'));
 
 
-app.get('/private/api/userinfo', userDBHandler.endpoint_userInfo.bind(userDBHandler));
-app.post('/private/api/updcourseprog', express.json(), userDBHandler.endpoint_updateCourseProgress.bind(userDBHandler));
+app.get('/api/userinfo', clerk.requireAuth(), userDBHandler.endpoint_userInfo.bind(userDBHandler));
+app.post('/api/updcourseprog', clerk.requireAuth(), express.json(), userDBHandler.endpoint_updateCourseProgress.bind(userDBHandler));
 
-app.get('/private/api/getcourses', courseDBHandler.endpoint_getCourseList.bind(courseDBHandler));
-app.get('/private/api/getcourse/:courseName', courseDBHandler.endpoint_getCourse.bind(courseDBHandler));
+app.get('/api/getcourses', clerk.requireAuth(), courseDBHandler.endpoint_getCourseList.bind(courseDBHandler));
+app.get('/api/getcourse/:courseName', clerk.requireAuth(), courseDBHandler.endpoint_getCourse.bind(courseDBHandler));
 
-app.get('/private/api/gemini', endpoint_geminiYoutubeSearch);
-app.post('/private/api/gemini/chat', express.json(), geminiChatBot.endpoint_chatbot.bind(geminiChatBot));
+app.get('/api/gemini/youtube', endpoint_geminiYoutubeSearch);
+app.post('/api/gemini/chat', express.json(), geminiChatBot.endpoint_chatbot.bind(geminiChatBot));
 
 app.listen(+process.env.PORT, () => {
     console.log(`Server is running on port http://localhost:${process.env.PORT}`);

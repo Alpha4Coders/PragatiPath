@@ -26,7 +26,7 @@ btn.addEventListener("click", async function () {
     div2.innerHTML = "Loading...";
     chatContainer.appendChild(div2);
 
-    const res = await fetch(window.location.origin + "/private/api/gemini/chat", {
+    const res = await fetch(window.location.origin + "/api/gemini/chat", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -35,9 +35,8 @@ btn.addEventListener("click", async function () {
     });
 
     const data = await res.json();
-    div2.innerHTML = data.response;
+    div2.innerHTML = marked.parse(data.response);
 
     chatWrapper.scrollTop = chatWrapper.scrollHeight;
     messageInput.value = "";
-    fetchResponse(message);
 });
