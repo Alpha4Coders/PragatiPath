@@ -149,8 +149,6 @@ class UserDB {
             res.json({ error: "Internal server error" });
         }
     }
-
-
 }
 
 module.exports = {
