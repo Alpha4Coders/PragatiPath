@@ -2,69 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Agriculture Toolkit</title>
-  <link rel="stylesheet" href="../AI-Toolkit/toolkit.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="toolkit.css">
 </head>
-
-<body>
-  <h1>AI Agriculture Toolkit</h1>
-  <input type="file" id="upload" accept="image/*">
-  <br>
-  <img id="image" src="" alt="Upload an Image">
-  <div id="prediction">Prediction will appear here</div>
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>AI Agriculture Toolkit</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
-</head>
-
 <body>
 
-  <h1>AI Agriculture Toolkit</h1>
+  <header>
+    <h1>AI Agriculture Toolkit</h1>
+    <p>Empowering farmers with smart tools</p>
+  </header>
 
-  <div class="card-container">
-    <!--Plant Detection Card -->
-    <div class="card" id="plant-detection-card">
+  <div class="container">
+    <div class="card">
       <h2>Plant Disease Detection</h2>
-      <input type="file" id="upload" accept="image/*">
-      <button onclick="predictImage()">Predict</button>
-      <img id="image" src="" alt="Upload an Image">
-      <div id="prediction">Prediction Result</div>
+      <input type="file" id="upload">
+      <img id="image" width="224" height="224" alt="Uploaded Image" />
+      <div id="prediction">Prediction will appear here</div>
     </div>
 
-    <!--Weather Card -->
     <div class="card" id="weather-card">
-        <h2>Live Weather</h2>
-        <div class="loader"></div>
-        <input type="text" id="cityInput" placeholder="Enter City">
-        <button onclick="getWeather()">Get Weather</button>
-        <div id="weatherResult"></div>
-      </div>
-  
-  
-    <!--Map Card -->
+      <h2>Live Weather</h2>
+      <div class="loader" style="display: none;"></div> <!-- HIDE loader initially -->
+      <input type="text" id="cityInput" placeholder="Enter City">
+      <button onclick="getWeather()">Get Weather</button>
+      <div id="weatherResult"></div>
+    </div>
+
     <div class="card">
       <h2>Field Map & Location</h2>
-      <div id="map">Map will appear here</div>
+      <div id="map"></div> <!-- remove inline height style -->
     </div>
 
-    <!--Soil Analysis Card-->
     <div class="card">
       <h2>Soil Health Tips</h2>
       <div id="soil-tips">Healthy soil = healthy crops!</div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="toolkit.js"></script>
 
-</body>
-</html>
-  <script src="../AI-Toolkit/toolkit.js"></script>
 </body>
 </html>
