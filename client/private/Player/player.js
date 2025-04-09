@@ -45,6 +45,9 @@
 //     item.appendChild(content);
 //     curriculumList.appendChild(item);
 // });
+let player;
+let watchSeconds = 0;
+let timer = null;
 
 async function fetchCourseData() {
     const name = localStorage.getItem('courseName');
@@ -56,7 +59,15 @@ async function fetchCourseData() {
     document.getElementById('course-lang').textContent = data.medium;
 
     const container = document.querySelector('.video-preview');
-    container.innerHTML = `<iframe class="course-data" src="https://www.youtube.com/embed/videoseries?si=snA55-bnnKld84ew&amp;list=${localStorage.getItem("coursePlaylist")}" title="${data.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+    container.innerHTML = `
+        <iframe id="yt-player" class="course-data"
+            src="https://www.youtube.com/embed/videoseries?list=${localStorage.getItem("coursePlaylist")}&enablejsapi=1"
+            title="${data.title}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>`;
 
     const chres = await fetch(window.location.origin + `/api/youtubechannel/${localStorage.getItem("coursePlaylist")}`);
     const chdata = await chres.json();
@@ -69,9 +80,34 @@ async function fetchCourseData() {
     document.getElementById('channel-link').textContent = chdata.channelTitle;
 }
 
-fetchCourseData();
-
 // Enroll button action
 function enrollCourse() {
-    alert("Thank you for enrolling! Welcome to AgriLearn.");
+    alert("Thank you for enrolling! Welcome to PragiPath.");
 }
+
+window.onYouTubeIframeAPIReady = function () {
+    player = new YT.Player('yt-player', {
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+};
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+        timer = setInterval(() => {
+            watchSeconds++;
+            const courseId = localStorage.getItem("courseId");
+            localStorage.setItem(`watched_${courseId}`, watchSeconds);
+        }, 1000);
+    } else {
+        clearInterval(timer);
+    }
+}
+
+
+const ytScript = document.createElement('script');
+ytScript.src = "https://www.youtube.com/iframe_api";
+document.head.appendChild(ytScript);
+
+fetchCourseData();

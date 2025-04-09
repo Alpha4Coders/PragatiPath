@@ -943,6 +943,20 @@ input[type="file"]:hover {
 .send-btn:hover {
   background: #47c4e3; 
 }
+.course-card .progress-bar {
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.course-card .progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #4caf50, #8bc34a);
+  transition: width 0.3s ease;
+}
+
 
 @media (max-width: 768px) {
   .dashboard-content {

@@ -501,3 +501,38 @@ function courseHandler(button) {
 
     window.location.href = window.location.origin + '/private/Player/player.html';
 }
+/*async function listCourses() {
+    const res = await fetch('/api/getcourses');
+    const data = await res.json();
+    const courseList = document.querySelector('.courses-grid');
+
+    for (const course of data) {
+        const card = document.createElement('div');
+        card.classList.add('course-card');
+
+        const imgres = await fetch(window.location.origin + `/api/youtubethumb/${course.playlist}`);
+        const imgdata = await imgres.json();
+
+        const watchedSeconds = localStorage.getItem(`watched_${course._id}`) || 0;
+        const estimatedDuration = 1200; 
+        const progress = Math.min(watchedSeconds / estimatedDuration, 1);
+
+        card.innerHTML = `
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: ${progress * 100}%;"></div>
+            </div>
+            <img src="${imgdata.img}" alt="Playlist image" />
+            <h3>${course.name}</h3>
+            <p>${course.description}</p>
+            <p><b>Medium</b>: ${course.medium}</p>
+            <button class="enroll-btn"
+                data-coursename="${course.name}"
+                data-courseplaylist="${course.playlist}"
+                data-courseid="${course._id}"
+                onclick="courseHandler(this);">Watch</button>
+        `;
+
+        courseList.appendChild(card);
+    }
+}
+*/
