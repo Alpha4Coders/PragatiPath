@@ -1,4 +1,3 @@
-const axios = require('axios');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const dotenv = require('dotenv');

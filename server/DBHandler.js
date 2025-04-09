@@ -25,7 +25,8 @@ class UserDB {
             type: [
                 {
                     name: { type: String, required: true },
-                    progress: { type: Number, required: true, default: 0 }
+                    desc: { type: String, required: true, default: 0 },
+                    imgURL: { type: String, required: true, default: "" },
                 }
             ], default: []
         },
