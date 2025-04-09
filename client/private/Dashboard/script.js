@@ -465,3 +465,39 @@ function success()
         icon: "success",
       });
 }
+
+async function logout() {
+    await Clerk.signOut();
+    window.location.href = window.location.origin + '/private/logout';
+}
+
+// course js @Rouvik Maji
+async function listCourses() {
+    const res = await fetch('/api/getcourses');
+    const data = await res.json();
+    const courseList = document.querySelector('.courses-grid');
+    for (const course of data) {
+        const card = document.createElement('div');
+        card.classList.add('course-card');
+        const imgres = await fetch(window.location.origin + `/api/youtubethumb/${course.playlist}`);
+        const imgdata = await imgres.json();
+        card.innerHTML = `
+            <img src="${imgdata.img}" alt="Playlist image" />
+            <h3>${course.name}</h3>
+            <p>${course.description}</p>
+            <p><b>Medium</b>: ${course.medium}</p>
+            <button class="enroll-btn" data-coursename="${course.name}" data-courseplaylist="${course.playlist}" data-courseid="${course._id}" onclick="courseHandler(this);">Watch</button>
+        `;
+        courseList.appendChild(card);
+    }
+}
+
+listCourses();
+
+function courseHandler(button) {
+    localStorage.setItem('courseName', button.dataset.coursename);
+    localStorage.setItem('coursePlaylist', button.dataset.courseplaylist);
+    localStorage.setItem('courseId', button.dataset.courseid);
+
+    window.location.href = window.location.origin + '/private/Player/player.html';
+}

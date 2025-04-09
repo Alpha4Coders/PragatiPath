@@ -156,7 +156,7 @@ class UserDB {
 
 class CourseDB {
     static courseSchema = new mongoose.Schema({
-        name: { type: String, required: true, },
+        name: { type: String, required: true, unique: true },
         description: { type: String, required: true },
         playlist: { type: String, required: true },
         medium: { type: String, default: "Hindi" }
@@ -167,7 +167,7 @@ class CourseDB {
     async endpoint_getCourseList(req, res)
     {
         try {
-            const courses = await CourseDB.Courses.find({}, { _id: 0, __v: 0 });
+            const courses = await CourseDB.Courses.find({}, {   __v: 0 });
             res.json(courses);
         } catch (error) {
             console.log("[CourseDB Error] endpoint_getCourseList failed to fetch course list", error);

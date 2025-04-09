@@ -40,9 +40,42 @@ async function endpoint_youtubePlaylistImg(req, res) {
             title: data.items[0].snippet.title
         });
     }
-    else
-    {
+    else {
         res.json({ error: "Playlist not found." });
+    }
+}
+
+async function endpoint_getChannelInfo(req, res) {
+    if (!req.params.playlistId) {
+        res.json({ error: "Playlist ID is required." });
+        return;
+    }
+
+    try {
+        const playlistRes = await fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${req.params.playlistId}&key=${process.env.YOUTUBE_DATA_API_KEY}`);
+        const playlistData = await playlistRes.json();
+        if (!playlistData.items || playlistData.items.length === 0) {
+            res.json({ error: "Invalid playlist ID" });
+            return;
+        }
+
+        const channelId = playlistData.items[0].snippet.channelId;
+        const channelRes = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${process.env.YOUTUBE_DATA_API_KEY}`);
+        const channelData = await channelRes.json();
+        if (!channelData.items || channelData.items.length === 0) {
+            res.json({ error: "Invalid channel ID" });
+            return;
+        }
+
+        const channelInfo = channelData.items[0].snippet;
+        res.json({
+            channelId: channelId,
+            channelTitle: channelInfo.title,
+            channelDescription: channelInfo.description,
+            channelThumbnail: channelInfo.thumbnails.default.url,
+        });
+    } catch (error) {
+
     }
 }
 
@@ -99,5 +132,6 @@ module.exports = {
     endpoint_openWeatherAPI,
     endpoint_geminiYoutubeSearch,
     endpoint_youtubePlaylistImg,
+    endpoint_getChannelInfo,
     GeminiChatBot
 };

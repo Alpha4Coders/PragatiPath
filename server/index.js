@@ -4,7 +4,7 @@ const session = require('cookie-session');
 
 // custom modules ----------------
 const { MongooseConnect, UserDB, CourseDB } = require('./DBHandler.js');
-const { endpoint_youtubePlaylistImg, endpoint_geminiYoutubeSearch, endpoint_openWeatherAPI, GeminiChatBot } = require('./aiSearch.js');
+const { endpoint_getChannelInfo, endpoint_youtubePlaylistImg, endpoint_geminiYoutubeSearch, endpoint_openWeatherAPI, GeminiChatBot } = require('./aiSearch.js');
 
 // express ----------------------------
 const express = require('express');
@@ -62,15 +62,17 @@ app.get('/api/userinfo', clerk.requireAuth(), userDBHandler.endpoint_userInfo.bi
 app.post('/api/updcourseprog', clerk.requireAuth(), express.json(), userDBHandler.endpoint_updateCourseProgress.bind(userDBHandler));
 
 app.get('/api/getcourses', clerk.requireAuth(), courseDBHandler.endpoint_getCourseList.bind(courseDBHandler));
-app.get('/api/getcourse/:courseName', clerk.requireAuth(), courseDBHandler.endpoint_getCourseByName.bind(courseDBHandler));
-app.get('/api/getcourse/:courseId', clerk.requireAuth(), courseDBHandler.endpoint_getCourseById.bind(courseDBHandler));
+app.get('/api/getcourse/name/:courseName', clerk.requireAuth(), courseDBHandler.endpoint_getCourseByName.bind(courseDBHandler));
+app.get('/api/getcourse/id/:courseId', clerk.requireAuth(), courseDBHandler.endpoint_getCourseById.bind(courseDBHandler));
 
-app.get('/api/gemini/youtube', endpoint_geminiYoutubeSearch);
+// app.get('/api/gemini/youtube', endpoint_geminiYoutubeSearch);
 app.post('/api/gemini/chat', express.json(), GeminiChatBot.endpoint_chatbot);
 
 app.get('/api/openweather/:lat/:lon', endpoint_openWeatherAPI);
 
 app.get('/api/youtubethumb/:playlist', endpoint_youtubePlaylistImg);
+
+app.get('/api/youtubechannel/:playlistId', endpoint_getChannelInfo);
 
 app.listen(+process.env.PORT, () => {
     console.log(`Server is running on port http://localhost:${process.env.PORT}`);

@@ -1,87 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PragatiPath</title>
-  <link rel="stylesheet" href="player.css">
-  <link rel="shortcut icon" href="../assets/plant.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PragatiPath</title>
+    <link rel="stylesheet" href="player.css">
+    <link rel="shortcut icon" href="../assets/plant.png" type="image/x-icon">
 </head>
+
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <h1>PragatiPath</h1>
-      <nav>
-        <a href="#">Home</a>
-        <a href="#">Courses</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Course Section -->
-  <main class="container course-main">
-
-    <!-- Left Section -->
-    <div class="course-left">
-      <h2>Organic Farming: Grow Food Sustainably</h2>
-      <p class="instructor">By Dr. Greenfield</p>
-      <p class="rating">4.8 ★★★★★ (320 ratings) • 12,000 students</p>
-      <p class="meta">Last updated 04/2025 • English</p>
-
-      <div class="video-preview">
-        <video width="100%" controls poster="https://images.unsplash.com/photo-1592179901103-5ec3b14f1fa7">
-          <source src="sample-course.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="course-includes">
-        <h3>This course includes:</h3>
-        <ul>
-          <li>6 hours on-demand video</li>
-          <li>5 downloadable resources</li>
-          <li>Full lifetime access</li>
-          <li>Certificate of Completion</li>
-        </ul>
-      </div>
-
-      <!-- Curriculum Section -->
-      <div class="curriculum">
-        <h3>Course Curriculum</h3>
-        <div id="curriculum-list">
-          <!-- JS will inject sections here -->
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>PragatiPath</h1>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Courses</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
         </div>
-      </div>
+    </header>
 
-      <!-- About Instructor -->
-      <div class="instructor-bio">
-        <h3>About the Instructor</h3>
-        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Instructor Photo">
-        <p><strong>Dr. Greenfield</strong> is an agricultural scientist with 20+ years of experience in organic farming, permaculture, and sustainability research.</p>
-      </div>
+    <!-- Main Course Section -->
+    <main class="container course-main">
 
-    </div>
+        <!-- Left Section -->
+        <div class="course-left">
+            <h2 id="course-title">Organic Farming: Grow Food Sustainably</h2>
+            <p id="course-desc">...</p>
+            <p class="meta"><b>Language</b>: <span id="course-lang">Hindi</span></p>
 
-    <!-- Right Sidebar -->
-    <div class="course-sidebar">
-      <div class="price-box">
-        <h2>$29.99</h2>
-        <button class="enroll-btn" onclick="enrollCourse()">Enroll Now</button>
-        <p class="guarantee">30-Day Money-Back Guarantee</p>
-      </div>
-    </div>
+            <div class="video-preview">
 
-  </main>
+            </div>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy;2025 PragatiPath. All rights reserved.<p>
-  </footer>
+            <!-- About Instructor -->
+            <div class="instructor-bio">
+                <h3>About the playlist:</h3>
+                <img id="channel-img" src="" alt="channel image">
+                <p id="channel-name">Channel Name</p>
+                <p id="channel-desc">...</p>
+                <a id="channel-link" href="">#</a>
+            </div>
 
-  <script src="player.js"></script>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="course-sidebar">
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy;2025 PragatiPath. All rights reserved.
+        <p>
+    </footer>
+
+    <script src="player.js"></script>
 </body>
+
 </html>
