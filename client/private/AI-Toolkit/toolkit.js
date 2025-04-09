@@ -1,13 +1,19 @@
-let model;
+let model = null;
 
-// Load MobileNetV2 model
+let classList = null;
+
+// Load rishit-dagli plant disease model
 async function loadModel() {
-  model = await tf.loadGraphModel(
-    'https://tfhub.dev/google/tfjs-model/imagenet/mobilenet_v2_100_224/classification/3/default/1',
-    { fromTFHub: true }
-  );
-  console.log("Model loaded successfully!");
+    classList = await fetch(window.location.origin + '/public/assets/plant-disease-tfjs-default-v1/class_indices.json');
+    classList = await classList.json();
+
+    model = await tf.loadLayersModel(
+        window.location.origin + '/public/assets/plant-disease-tfjs-default-v1/model.json',
+        { fromTFHub: true }
+    );
+    console.log("Model loaded successfully!");
 }
+
 loadModel();
 
 // Handle file upload
@@ -15,100 +21,91 @@ const upload = document.getElementById('upload');
 const img = document.getElementById('image');
 const predictionText = document.getElementById('prediction');
 
+const weatherDiv = document.getElementById('weatherResult');
+
 upload.addEventListener('change', async (e) => {
-  const file = e.target.files[0];
-  img.src = URL.createObjectURL(file);
+    const file = e.target.files[0];
+    img.src = URL.createObjectURL(file);
 
-  img.onload = async () => {
-    const tensor = tf.browser.fromPixels(img)
-      .resizeNearestNeighbor([224, 224])
-      .toFloat()
-      .expandDims();
+    img.onload = async () => {
+        if (model == null) {
+            alert("Model not loaded yet, please wait a while and resend image");
+            img.src = "";
+            return;
+        }
 
-    const predictions = await model.predict(tensor).data();
-    const topIdx = predictions.indexOf(Math.max(...predictions));
-    predictionText.innerHTML = `Predicted Class Index: ${topIdx}`;
-  };
+        const tensor = tf.browser.fromPixels(img)
+            .resizeNearestNeighbor([224, 224])
+            .toFloat()
+            .div(tf.scalar(255.0))
+            .expandDims();
+
+        const predictions = await model.predict(tensor).data();
+        const topIdx = predictions.indexOf(Math.max(...predictions));
+        predictionText.textContent = `Predicted disease: ${classList[topIdx]}`;
+    };
 });
 
-const apiKey = 'YOUR_REAL_API_KEY'; // Replace with your OpenWeather API Key
-
 // Weather by coordinates (for location-based fetch)
-function getWeatherByCoords(lat, lon) {
-  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
-    .then(response => response.json())
-    .then(data => {
-      const weatherDiv = document.getElementById('weatherResult');
-      if (data.cod === 200) {
+async function getWeatherByCoords(lat, lon) {
+    try {
+        const wres = await fetch(window.location.origin + `/api/openweather/${lat}/${lon}`);
+        const data = await wres.json();
         weatherDiv.innerHTML = `
-          <p><strong>${data.name}</strong></p>
-          <p>Temperature: ${data.main.temp}°C</p>
-          <p>Weather: ${data.weather[0].description}</p>`;
-      } else {
+            <p><strong>${data.name}</strong></p>
+            <p>Temperature: ${data.temp}°C</p>
+            <p>Weather: ${data.weather}</p>
+            <p>Humidity: ${data.humidity}%</p>
+            <p>Wind Speed: ${data.wind} m/s</p>`;
+    } catch (error) {
+        console.log(error);
         weatherDiv.innerHTML = '<p>Weather data not available!</p>';
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching weather:', error);
-      document.getElementById('weatherResult').innerHTML = '<p>Failed to load weather data.</p>';
-    });
+    }
 }
 
-// Weather by city (for input field)
-function getWeatherByCity() {
-  const city = document.getElementById('cityInput').value;
-  if (!city) {
-    alert("Please enter a city name.");
-    return;
-  }
-
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric)
-    .then(response => response.json()`)
-    .then(data => {
-      const weatherDiv = document.getElementById('weatherResult');
-      if (data.cod === 200) {
-        weatherDiv.innerHTML = `
-          <p><strong>${data.name}</strong></p>
-          <p>Temperature: ${data.main.temp}°C</p>
-          <p>Weather: ${data.weather[0].description}</p>`;
-      } else {
-        weatherDiv.innerHTML = '<p>Weather data not available!</p>';
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching weather:', error);
-      document.getElementById('weatherResult').innerHTML = '<p>Failed to load weather data.</p>';
-    });
+function getWeather() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            console.log(`Your location: ${lat}, ${lon}`);
+            getWeatherByCoords(lat, lon);
+        }, () => {
+            alert("Unable to fetch location. Allow location access.");
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
 }
 
 // Map Initialization
 function initMap(lat, lon) {
-  const map = L.map('map').setView([lat, lon], 10);
+    const map = L.map('map').setView([lat, lon], 10);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data © OpenStreetMap contributors',
-  }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © OpenStreetMap contributors',
+    }).addTo(map);
 
-  L.marker([lat, lon]).addTo(map)
-    .bindPopup('You are here!')
-    .openPopup();
+    L.marker([lat, lon]).addTo(map)
+        .bindPopup('You are here!')
+        .openPopup();
 }
 
 // Get Location and Start Map + Weather
 function getLocationAndStart() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      console.log(`Your location: ${lat}, ${lon}`);
-      initMap(lat, lon);
-      getWeatherByCoords(lat, lon);
-    }, () => {
-      alert("Unable to fetch location. Allow location access.");
-    });
-  } else {
-    alert("Geolocation is not supported by this browser.");
-  }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            console.log(`Your location: ${lat}, ${lon}`);
+            initMap(lat, lon);
+            getWeatherByCoords(lat, lon);
+        }, () => {
+            alert("Unable to fetch location. Allow location access.");
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
 }
 
 getLocationAndStart();

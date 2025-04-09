@@ -4,7 +4,7 @@ const session = require('cookie-session');
 
 // custom modules ----------------
 const { MongooseConnect, UserDB, CourseDB } = require('./DBHandler.js');
-const { endpoint_geminiYoutubeSearch, GeminiChatBot } = require('./aiSearch.js');
+const { endpoint_geminiYoutubeSearch, endpoint_openWeatherAPI, GeminiChatBot } = require('./aiSearch.js');
 
 // express ----------------------------
 const express = require('express');
@@ -55,6 +55,8 @@ app.get('/api/getcourse/:courseName', clerk.requireAuth(), courseDBHandler.endpo
 
 app.get('/api/gemini/youtube', endpoint_geminiYoutubeSearch);
 app.post('/api/gemini/chat', express.json(), geminiChatBot.endpoint_chatbot.bind(geminiChatBot));
+
+app.get('/api/openweather/:lat/:lon', endpoint_openWeatherAPI);
 
 app.listen(+process.env.PORT, () => {
     console.log(`Server is running on port http://localhost:${process.env.PORT}`);
