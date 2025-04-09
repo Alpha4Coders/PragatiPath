@@ -43,7 +43,7 @@ class UserDB {
 
             try {
                 const userDbStore = await UserDB.Users.findOne({
-                    userID: req.auth.userId
+                    userId: req.auth.userId
                 });
 
                 if (userDbStore === null) {
@@ -64,6 +64,93 @@ class UserDB {
 
         next();
     }
+
+    async endpoint_userInfo(req, res) {
+        try {
+            const userDbStore = await UserDB.Users.findOne({
+                userId: req.auth.userId
+            }, { _id: 0, __v: 0, userId: 0 });
+
+            if (userDbStore === null) {
+                return res.status(404).send("User not found");
+            }
+
+            res.json(userDbStore);
+        } catch (error) {
+            console.log("[UserDB Error] endpoint_userInfo failed to fetch user info", error);
+            res.json({ error: "Internal server error" });
+        }
+    }
+
+    async endpoint_addCourse(req, res) {
+        try {
+            const { courseName } = req.body;
+
+            if (!courseName) {
+                res.json({ error: "Course name is required" });
+                return;
+            }
+
+            const userDbStore = await UserDB.Users.findOneAndUpdate(
+                { userId: req.auth.userId },
+                { $addToSet: { enrolledCourses: { name: courseName, progress: 0 } } },
+                { new: true }
+            );
+
+            if (userDbStore === null) {
+                res.json({ error: "User not found" });
+                return;
+            }
+
+            res.json(userDbStore);
+        } catch (error) {
+            console.log("[UserDB Error] endpoint_addCourse failed to add course", error);
+            res.json({ error: "Internal server error" });
+        }
+    }
+
+    async endpoint_updateCourseProgress(req, res) {
+        try {
+            const { courseName, progress } = req.body;
+
+            if (!courseName || progress === undefined) {
+                res.json({ error: "Course name and progress are required" });
+                return;
+            }
+
+            const userDbStore = await UserDB.Users.findOne({ userId: req.auth.userId });
+
+            if (userDbStore === null) {
+                res.json({ error: "User or course not found" });
+                return;
+            }
+
+            const course = userDbStore.enrolledCourses.find(course => course.name === courseName);
+            if (!course) {
+                res.json({ error: "Course not found" });
+                return;
+            }
+
+            course.progress += progress;
+
+            if (course.progress > 100) {
+                userDbStore.completedCourses.push(courseName);
+                userDbStore.enrolledCourses = userDbStore.enrolledCourses.filter(course => course.name !== courseName);
+                await userDbStore.save();
+                res.json(userDbStore);
+            }
+            else {
+                await userDbStore.save();
+            }
+
+            res.json(userDbStore);
+        } catch (error) {
+            console.log("[UserDB Error] endpoint_updateCourseProgress failed to update progress", error);
+            res.json({ error: "Internal server error" });
+        }
+    }
+
+
 }
 
 module.exports = {
