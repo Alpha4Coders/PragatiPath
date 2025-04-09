@@ -1,5 +1,4 @@
-# Pragati Path
-An AI enabled farmer education and enhance project to improve farming industry in India
+# Alpha α 4
 
 # Getting started
 ## npm i 
