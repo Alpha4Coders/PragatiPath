@@ -156,9 +156,10 @@ class UserDB {
 
 class CourseDB {
     static courseSchema = new mongoose.Schema({
-        name: { type: String, required: true, unique: true },
+        name: { type: String, required: true, },
         description: { type: String, required: true },
-        playlist: { type: String, required: true }
+        playlist: { type: String, required: true },
+        medium: { type: String, default: "Hindi" }
     });
 
     static Courses = mongoose.model('courses', CourseDB.courseSchema);
@@ -174,7 +175,7 @@ class CourseDB {
         }
     }
 
-    async endpoint_getCourse(req, res) {
+    async endpoint_getCourseByName(req, res) {
         try {
             const { courseName } = req.params;
 
@@ -184,6 +185,29 @@ class CourseDB {
             }
 
             const course = await CourseDB.Courses.findOne({ name: courseName }, { _id: 0, __v: 0 });
+
+            if (course === null) {
+                res.json({ error: "Course not found" });
+                return;
+            }
+
+            res.json(course);
+        } catch (error) {
+            console.log("[CourseDB Error] endpoint_getCourse failed to fetch course", error);
+            res.json({ error: "Internal server error" });
+        }
+    }
+
+    async endpoint_getCourseById(req, res) {
+        try {
+            const { courseId } = req.params;
+
+            if (!courseId) {
+                res.json({ error: "Course name is required" });
+                return;
+            }
+
+            const course = await CourseDB.Courses.findOne({ _id: courseId }, { _id: 0, __v: 0 });
 
             if (course === null) {
                 res.json({ error: "Course not found" });

@@ -418,7 +418,7 @@ function getFarmingSuggestion(weatherData) {
     if (temp >= 20 && temp <= 25) {
         return "Ideal conditions for planting vegetables like tomatoes, peppers, and lettuce.";
     }
-    return "Weather looks normal. Continue regular farming practices.";
+    return "Weather looks normal. Continue regular farming practices.";
 }
 getLocationAndStart();
 
