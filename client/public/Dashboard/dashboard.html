@@ -3,16 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard</title>
+  <title>PragatiPath</title>
+  <link rel="shortcut icon" href="../LandingPage/assets/plant.png" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="header">
-    <h1>My Courses</h1>
+    <nav class="nav">
+      <h1 class="logo">PragatiPath</h1>
+      <ul class="nav-links">
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#support">Support</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="dashboard" id="dashboard">
-  </main>
+  <div class="content">
+    <aside class="sidebar">
+      <div class="user-details">
+        <h2>👤 username</h2>
+        <p><strong>Progress:</strong> 3/5 Courses Completed</p>
+        <p><strong>Top Interest:</strong> 🌱 Modern Farming</p>
+        <p><strong>Wants to Learn:</strong> 📈 Entrepreneurship</p>
+      </div>
+      <div class="language-select">
+        <label for="language">🌐Language:</label>
+        <select id="language">
+          <option value="en">English</option>
+          <option value="hi">हिंदी</option>
+          <option value="bn">বাংলা</option>
+          <option value="ta">தமிழ்</option>
+        </select>
+      </div>      
+    </aside>
+
+    <main class="dashboard" id="dashboard">
+      <!-- Course cards will be dynamically injected here -->
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>

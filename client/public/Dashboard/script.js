@@ -1,27 +1,47 @@
+// script.js
 const courses = [
   {
-    title: "Naya bharat ka naya kishaan",
-    instructor: "Harish",
-    progress: 30,
-    thumbnail: "https://source.unsplash.com/400x300/?agriculture,farmer"
+    title: "🌱 Modern Farming",
+    description: "Learn sustainable farming techniques, organic methods, and irrigation strategies."
   },
   {
-    title: "Hello Kishan",
-    instructor: "Suresh",
-    progress: 65,
-    thumbnail: "https://source.unsplash.com/400x300"
+    title: "💻 Digital Literacy",
+    description: "Master the use of smartphones, digital apps, internet safety, and online tools."
   },
   {
-    title: "krishi darshan",
-    instructor: "Ramesh",
-    progress: 90,
-    thumbnail: "https://source.unsplash.com/400x300"
+    title: "📈Entrepreneurship",
+    description: "Start and manage rural businesses, understand finance, and market your products."
   },
   {
-    title: "Humari dharti",
-    instructor: "Archis",
-    progress: 45,
-    thumbnail: "https://source.unsplash.com/400x300"
+    title: "🌾 Crop Health",
+    description: "Identify and treat common crop diseases, use of AI in crop monitoring."
+  },
+  {
+    title: "📸 Digital Tools in Farming",
+    description: "Explore farm management apps, weather forecasts, and agricultural drones."
+  },
+  {
+    title: "🧪 Fertilizers & Soil Health",
+    description: "Understand the types of fertilizers, proper usage, and maintaining soil fertility."
+  },
+  {
+    title: "🌦️ Weather & Seasons",
+    description: "Learn how seasonal changes and weather patterns affect farming and harvest cycles."
+  },
+  {
+    title: "🥕 Seasonal Crops Guide",
+    description: "Know which crops thrive in each season and how to plan your farming calendar."
   }
 ];
+
 const dashboard = document.getElementById('dashboard');
+
+courses.forEach(course => {
+  const card = document.createElement('div');
+  card.className = 'course-card';
+  card.innerHTML = `
+    <div class="course-title">${course.title}</div>
+    <div class="course-description">${course.description}</div>
+  `;
+  dashboard.appendChild(card);
+});
