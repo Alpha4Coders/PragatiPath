@@ -15,15 +15,28 @@ function updateLoginButtonText() {
 updateLoginButtonText();
 window.addEventListener("resize", updateLoginButtonText);
 
+window.addEventListener("resize", () => {
+    const logo = document.querySelector(".logo");
+    const mediaQuery = window.matchMedia("(max-width: 400px)");
+
+    if (mediaQuery.matches) {
+        logo.textContent = "PP";
+        logo.style.color = "green";
+    } else {
+        logo.textContent = "PragatiPath";
+        logo.style.color = "#191923";
+    }
+})
+
 function toggleFAQ(element) {
     const faq = element.parentElement;
     faq.classList.toggle("open");
 }
 
-document.querySelector('#FAQ-btn').addEventListener('click', function(e) {
+document.querySelector('#FAQ-btn').addEventListener('click', function (e) {
     e.preventDefault();
     const targetFAQ = document.getElementById('FAQ');
-    if(targetFAQ) {
+    if (targetFAQ) {
         targetFAQ.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
