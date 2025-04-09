@@ -1,7 +1,4 @@
-const { get } = require("mongoose");
-
 let model = null;
-
 let classList = null;
 
 // Load rishit-dagli plant disease model
@@ -62,7 +59,7 @@ async function getWeatherByCoords(lat, lon) {
             <p>Wind Speed: ${data.wind} m/s</p>`;
         //Farming Suggestions
         const farmingSuggestion = getFarmingSuggestion(data);
-        weatherDiv.innerHTML += <p style="color: green;"><strong>Farming Tip:</strong> ${farmingSuggestion}</p>;
+        weatherDiv.innerHTML += `<p style="color: green;"><strong>Farming Tip:</strong> ${farmingSuggestion}</p>`;
 
     } catch (error) {
         console.log(error);
