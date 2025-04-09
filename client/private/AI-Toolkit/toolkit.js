@@ -1,3 +1,5 @@
+const { get } = require("mongoose");
+
 let model = null;
 
 let classList = null;
@@ -52,12 +54,16 @@ async function getWeatherByCoords(lat, lon) {
     try {
         const wres = await fetch(window.location.origin + `/api/openweather/${lat}/${lon}`);
         const data = await wres.json();
-        weatherDiv.innerHTML = `
-            <p><strong>${data.name}</strong></p>
+        weatherDiv.innerHTML = 
+           `<p><strong>${data.name}</strong></p>
             <p>Temperature: ${data.temp}°C</p>
             <p>Weather: ${data.weather}</p>
             <p>Humidity: ${data.humidity}%</p>
             <p>Wind Speed: ${data.wind} m/s</p>`;
+        //Farming Suggestions
+        const farmingSuggestion = getFarmingSuggestion(data);
+        weatherDiv.innerHTML += <p style="color: green;"><strong>Farming Tip:</strong> ${farmingSuggestion}</p>;
+
     } catch (error) {
         console.log(error);
         weatherDiv.innerHTML = '<p>Weather data not available!</p>';
@@ -108,5 +114,23 @@ function getLocationAndStart() {
         alert("Geolocation is not supported by this browser.");
     }
 }
+function getFarmingSuggestion(weatherData) {
+    const temp = weatherData.temp;
+    const humidity = weatherData.humidity;
+    const mainWeather = weatherData.weather.toLowerCase();
 
+    if (temp > 32 && humidity < 40) {
+        return "Consider drought-resistant crops like millet, sorghum, or chickpeas.";
+    }
+    if (humidity > 75) {
+        return "High humidity detected. Monitor for fungal infections and use proper fungicides.";
+    }
+    if (mainWeather.includes("rain")) {
+        return "Heavy rains expected. Ensure proper water drainage in fields.";
+    }
+    if (temp >= 20 && temp <= 25) {
+        return "Ideal conditions for planting vegetables like tomatoes, peppers, and lettuce.";
+    }
+    return "Weather looks normal. Continue regular farming practices.";
+}
 getLocationAndStart();
