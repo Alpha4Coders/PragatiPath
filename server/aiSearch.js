@@ -25,8 +25,25 @@ async function endpoint_geminiYoutubeSearch(req, res) {
     res.send(result.response.text());
 }
 
-async function endpoint_youtubePlaylist(req, res) {
-    
+async function endpoint_youtubePlaylistImg(req, res) {
+    if (!req.params.playlist) {
+        res.json({ error: "Playlist ID is required." });
+        return;
+    }
+
+    const yres = await fetch(`https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=${req.params.playlist}&key=${process.env.YOUTUBE_DATA_API_KEY}`);
+    const data = await yres.json();
+
+    if (data.items && data.items.length > 0) {
+        res.json({
+            img: data.items[0].snippet.thumbnails.maxres?.url || data.items[0].snippet.thumbnails.high?.url || data.items[0].snippet.thumbnails.default.url,
+            title: data.items[0].snippet.title
+        });
+    }
+    else
+    {
+        res.json({ error: "Playlist not found." });
+    }
 }
 
 async function endpoint_openWeatherAPI(req, res) {
@@ -52,12 +69,12 @@ class GeminiChatBot {
         this.model = ai.getGenerativeModel({ model: 'gemini-1.5-flash-002' });
         this.chat = this.model.startChat();
     }
-    
+
     static async endpoint_chatbot(req, res) {
         if (!req.session.botID) {
             req.session.botID = crypto.randomUUID();
         }
-        
+
         let bot = GeminiChatBot.botMap.get(req.session.botID);
         if (!bot) {
             bot = new GeminiChatBot();
@@ -81,5 +98,6 @@ class GeminiChatBot {
 module.exports = {
     endpoint_openWeatherAPI,
     endpoint_geminiYoutubeSearch,
+    endpoint_youtubePlaylistImg,
     GeminiChatBot
 };
