@@ -106,9 +106,43 @@
                     <div class="extras">
                         <div class="notes-area">
                             <h2>Quick Notes</h2>
-                            <textarea name="notes" id="notes"></textarea>
+                            <div class="notes-controls">
+                                <input type="text" id="new-note" placeholder="Add a new note...">
+                                <button id="add-note">+ Add</button>
+                            </div>
+                            <div class="notes-list" id="notes-list"></div>
                         </div>
-                        <div class="calender"></div>
+                        <div class="calender">
+                            <div class="calendar-container">
+                                <!-- <h2>🌱 Farmer's Daily Calendar</h2> -->
+                            
+                                <!-- Language Notice -->
+                                <p id="language-info"></p>
+                            
+                                <!-- Month & Year Navigation -->
+                                <div class="calendar-header">
+                                  <button id="prev-month">⬅️</button>
+                                  <span id="month-label">Month Year</span>
+                                  <button id="next-month">➡️</button>
+                                </div>
+                            
+                                <!-- Progress Bar -->
+                                <div class="progress-container">
+                                  <label for="progress-bar">📈Progress:</label>
+                                  <progress id="progress-bar" value="0" max="100"></progress>
+                                  <span id="progress-text">0%</span>
+                                  <button id="reset-progress">🔁 Reset</button>
+                                </div>
+                            
+                                <!-- Calendar Table -->
+                                <table class="calendar" id="calendar"></table>
+                            
+                                <!-- Daily Task Box -->
+                                <div class="task-box" id="task-box">
+                                  📅 Click on a date to see your task!
+                                </div>
+                              </div>
+                        </div>
                     </div>
                 </div>
                 <div class="right-side"></div>
