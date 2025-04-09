@@ -7,12 +7,16 @@
     <title>PragatiPath</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="../assets/plant.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 
     <script async crossorigin="anonymous"
         data-clerk-publishable-key="pk_test_b3JnYW5pYy1idW5ueS00OC5jbGVyay5hY2NvdW50cy5kZXYk"
         src="https://organic-bunny-48.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
         type="text/javascript">
         </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 
 <body>
@@ -248,19 +252,19 @@
                     <div id="prediction">Prediction will appear here</div>
                 </div>
 
-                <div class="course-card" id="weather-card">
+                <div class="card" id="weather-card">
                     <h2>Live Weather</h2>
                     <!-- <div class="loader" style="display: none;"></div> -->
                     <button onclick="getWeather()">Get Weather</button>
                     <div id="weatherResult"></div>
                 </div>
 
-                <div class="course-card">
+                <div class="card">
                     <h2>Field Map & Location</h2>
                     <div id="map"></div> <!-- remove inline height style -->
                 </div>
 
-                <div class="course-card">
+                <div class="card">
                     <h2>Farming Suggestions</h2>
                     <button onclick="getFarmingSuggestions()">Get Suggestions</button>
                     <div id="suggestions">Smart farming tips will appear here!</div>
