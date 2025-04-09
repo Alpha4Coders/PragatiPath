@@ -361,7 +361,7 @@ section {
 .calendar-container {
   width: 100%;
   margin: 0;
-  background-color: rgba(135, 206, 235, 0.5);
+  background-color: rgba(142, 235, 135, 0.5);
   border-radius: 20px;
   padding: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -424,7 +424,7 @@ h2 {
   background: #e8f5e9;
   transition: all 0.3s ease;
   font-weight: bold;
-  color: #1e6967;
+  color: #1e6935;
   font-size: 16px;
 }
 
@@ -792,7 +792,24 @@ button:hover {
   opacity: 0.8;
 }
 
+.file-input-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  width: 100%;
+}
 
+
+.file-input {
+  width: auto; 
+  max-width: 100%; 
+  padding: 0.5rem;
+  border: 1px solid #66bb6a;
+  border-radius: 8px;
+  background: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+  font-size: 0.9rem;
+}
 .ai-toolkit-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));      /* Toolkit Container */

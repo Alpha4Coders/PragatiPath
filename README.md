@@ -28,8 +28,7 @@ Make sure you have a `.env` file configured.
 
 ## 👨‍💻 Authors
 
-- [Rouvik Maji](https://github.com/Rouvik)  
-- [Archis](https://github.com/Dealer-09)  
-- [Vikash Gupta](https://github.com/vikashgupta16)  
-- [Rajbeer Saha](https://github.com/pixelpioneer404)
-
+- [**Rouvik Maji**](https://github.com/Rouvik) – *Backend Developer*
+- [**Archis**](https://github.com/Dealer-09) – *Backend/Frontend Developer*
+- [**Vikash Gupta**](https://github.com/vikashgupta16) – *Frontend Developer*
+- [**Rajbeer Saha**](https://github.com/pixelpioneer404) – *Frontend Developer*
