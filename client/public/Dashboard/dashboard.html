@@ -6,6 +6,7 @@
   <title>PragatiPath</title>
   <link rel="shortcut icon" href="../LandingPage/assets/plant.png" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../Chat-Bot/chat-bot.css">
   
 </head>
 <body>
@@ -43,7 +44,18 @@
       <!-- Course cards will be dynamically injected here -->
     </main>
   </div>
-
+ <!-- Chatbot Integration -->
+ <div id="chat-bubble">💬</div>
+ <div id="chat-label">Need Help?</div>
+ <div id="chat-wrapper">
+     <div id="chat-container"></div>
+     <div id="suggestions"></div>
+     <div id="input-container">
+         <input type="text" id="message-input" placeholder="How can I help you?">
+         <button id="btn">Send</button>
+     </div>
+ </div>
+<script src="../Chat-Bot/chat-bot.js" defer></script>
  
   <script src="script.js"></script>
 </body>

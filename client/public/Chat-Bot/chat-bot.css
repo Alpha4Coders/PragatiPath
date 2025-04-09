@@ -4,12 +4,12 @@
   all: unset;
 }
 :root {
-  --chat-main-color: #647bff;
-  --chat-bg-color: rgba(9, 10, 26, 0.75);
-  --chat-container-color: rgba(23, 27, 60, 0.75);
+  --chat-main-color: #1da372;
+  --chat-bg-color: rgba(22, 90, 38, 0.75);
+  --chat-container-color: rgba(23, 60, 48, 0.75);
   --chat-text-color: #fff;
-  --chat-border-color: #647bff;
-  --chat-glow-color: #4a6eff;
+  --chat-border-color: #64ff98;
+  --chat-glow-color: #4aff4d;
 }
 
 #chat-bubble {
@@ -46,7 +46,7 @@
 }
 
 #chat-bubble:hover {
-  background: #546eff;
+  background: #31d531;
   box-shadow: 0 0 15px var(--chat-glow-color), 0 0 30px var(--chat-glow-color);
 }
 
@@ -90,7 +90,7 @@
 }
 
 #chat-container::-webkit-scrollbar-thumb:hover {
-  background: #546eff;
+  background: #54ff54;
 }
 
 #chat-wrapper .message {
@@ -144,5 +144,5 @@
 }
 
 #btn:hover {
-  background: #546eff;
+  background:#32cd32;
 }
