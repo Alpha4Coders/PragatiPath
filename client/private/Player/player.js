@@ -49,5 +49,5 @@ const curriculumSections = [
   
   // Enroll button action
   function enrollCourse() {
-    alert("Thank you for enrolling! Welcome to AgriLearn.");
+    alert("Thank you for enrolling! Welcome to PragatiPath.");
   }
