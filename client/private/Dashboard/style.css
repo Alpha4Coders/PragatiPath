@@ -1045,7 +1045,7 @@ input[type="file"]:hover {
 
   #send-button {
     font-size: 12px;
-    padding: 6px 10px;
+    padding: 6px 6px;
     max-width: 2rem;
     border-radius: 18px;
     flex-shrink: 0;
