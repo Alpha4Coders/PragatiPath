@@ -187,6 +187,8 @@ function setupChat() {
         messageDiv.innerHTML = marked.parse(message);
         chatBox.appendChild(messageDiv);
         chatBox.scrollTop = chatBox.scrollHeight;
+
+        return messageDiv;
     }
 
     async function processMessage() {
@@ -195,7 +197,8 @@ function setupChat() {
 
         addMessage(message, true);
         chatInput.value = '';
-
+        
+        const msgDiv = addMessage("...", false);
         const res = await fetch('/api/gemini/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -206,7 +209,7 @@ function setupChat() {
         if (data.error) {
             addMessage("Error: " + data.error, false);
         } else {
-            addMessage(data.response, false);
+            msgDiv.innerHTML = marked.parse(data.response);
         }
     }
 
