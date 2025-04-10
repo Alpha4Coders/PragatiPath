@@ -23,13 +23,7 @@ class UserDB {
         name: { type: String, required: true },
         fullName: { type: String, required: true },
         enrolledCourses: {
-            type: [
-                {
-                    name: { type: String, required: true },
-                    desc: { type: String, required: true, default: 0 },
-                    imgURL: { type: String, required: true, default: "" },
-                }
-            ], default: []
+            type: [String], default: []
         },
         completedCourses: {
             type: [String],
@@ -99,7 +93,7 @@ class UserDB {
 
             const userDbStore = await UserDB.Users.findOneAndUpdate(
                 { userId: req.auth.userId },
-                { $addToSet: { enrolledCourses: { name: courseName, progress: 0 } } },
+                { $addToSet: { enrolledCourses: courseName } },
                 { new: true }
             );
 
@@ -115,46 +109,73 @@ class UserDB {
         }
     }
 
-    async endpoint_updateCourseProgress(req, res) {
+    async endpoint_removeCourse(req, res) {
         try {
-            const { courseName, progress } = req.body;
+            const { courseName } = req.body;
 
-            if (!courseName || progress === undefined) {
-                res.json({ error: "Course name and progress are required" });
+            if (!courseName) {
+                res.json({ error: "Course name is required" });
                 return;
             }
 
-            const userDbStore = await UserDB.Users.findOne({ userId: req.auth.userId });
+            const userDbStore = await UserDB.Users.findOneAndUpdate(
+                { userId: req.auth.userId },
+                { $pull: { enrolledCourses: courseName } },
+                { new: true }
+            );
 
             if (userDbStore === null) {
-                res.json({ error: "User or course not found" });
+                res.json({ error: "User not found" });
                 return;
-            }
-
-            const course = userDbStore.enrolledCourses.find(course => course.name === courseName);
-            if (!course) {
-                res.json({ error: "Course not found" });
-                return;
-            }
-
-            course.progress += progress;
-
-            if (course.progress > 100) {
-                userDbStore.completedCourses.push(courseName);
-                userDbStore.enrolledCourses = userDbStore.enrolledCourses.filter(course => course.name !== courseName);
-                await userDbStore.save();
-                res.json(userDbStore);
-            }
-            else {
-                await userDbStore.save();
             }
 
             res.json(userDbStore);
         } catch (error) {
-            console.log("[UserDB Error] endpoint_updateCourseProgress failed to update progress", error);
+            console.log("[UserDB Error] endpoint_removeCourse failed to remove course", error);
             res.json({ error: "Internal server error" });
         }
     }
+
+    // async endpoint_updateCourseProgress(req, res) {
+    //     try {
+    //         const { courseName, progress } = req.body;
+
+    //         if (!courseName || progress === undefined) {
+    //             res.json({ error: "Course name and progress are required" });
+    //             return;
+    //         }
+
+    //         const userDbStore = await UserDB.Users.findOne({ userId: req.auth.userId });
+
+    //         if (userDbStore === null) {
+    //             res.json({ error: "User or course not found" });
+    //             return;
+    //         }
+
+    //         const course = userDbStore.enrolledCourses.find(course => course.name === courseName);
+    //         if (!course) {
+    //             res.json({ error: "Course not found" });
+    //             return;
+    //         }
+
+    //         course.progress += progress;
+
+    //         if (course.progress > 100) {
+    //             userDbStore.completedCourses.push(courseName);
+    //             userDbStore.enrolledCourses = userDbStore.enrolledCourses.filter(course => course.name !== courseName);
+    //             await userDbStore.save();
+    //             res.json(userDbStore);
+    //         }
+    //         else {
+    //             await userDbStore.save();
+    //         }
+
+    //         res.json(userDbStore);
+    //     } catch (error) {
+    //         console.log("[UserDB Error] endpoint_updateCourseProgress failed to update progress", error);
+    //         res.json({ error: "Internal server error" });
+    //     }
+    // }
 }
 
 class CourseDB {
@@ -181,7 +202,7 @@ class CourseDB {
     async endpoint_getCourseByName(req, res) {
         try {
             const { courseName } = req.params;
-
+            
             if (!courseName) {
                 res.json({ error: "Course name is required" });
                 return;
@@ -223,7 +244,6 @@ class CourseDB {
             res.json({ error: "Internal server error" });
         }
     }
-
 }
 
 module.exports = {

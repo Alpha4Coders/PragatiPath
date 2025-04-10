@@ -221,16 +221,62 @@ function setupChat() {
     });
 }
 
+// @author Rouvik Maji
+async function unenrollCourse(button) {
+    const res = await fetch('/api/removecourse', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            courseName: button.dataset.coursename
+        })
+    });
+    const data = await res.json();
+    if (data.error) {
+        console.error("Error unenrolling course:", data.error);
+        location.reload();
+    } else {
+        location.reload();
+    }
+}
+
+// @author Rouvik Maji
+async function courseShortHandler(button) {
+    localStorage.setItem('courseName', button.dataset.coursename);
+    localStorage.setItem('coursePlaylist', button.dataset.courseplaylist);
+    localStorage.setItem('courseId', button.dataset.courseid);
+
+    window.location.href = window.location.origin + '/private/Player/player.html';
+}
+
 // Initialize everything when the page loads
 window.addEventListener('load', async () => {
     try {
         const req = await fetch('/api/userinfo');
         const res = await req.json();
         userData = res;
-        console.log("User Data:", userData);
         
         document.getElementById("username").innerText = userData.fullName;
         document.getElementById("profilePic").innerHTML = `<img src="${userData.imgUrl}" alt="Profile Picture" />`;
+
+        const mycoursesContainer = document.querySelector('.course-cards-container');
+        let i = 0;
+        for (const courseName of userData.enrolledCourses) {
+            if (i++ > 3) { // show only first 3
+                break;
+            }
+
+            const courseRes = await fetch(`/api/getcourse/name/${courseName}`);
+            const courseData = await courseRes.json();
+            const imgRes = await fetch(window.location.origin + `/api/youtubethumb/${courseData.playlist}`);
+            const imgData = await imgRes.json();
+
+            const courseCard = document.createElement('div');
+            courseCard.classList.add('dashboard-course-card');
+            courseCard.innerHTML = `<img src="${imgData.img}" alt="Playlist image" /> <h2>${courseName}</h2><p>${courseData.description}</p><button onclick="courseShortHandler(this);" data-coursename="${courseName}" data-courseplaylist="${courseData.playlist}" data-courseid="${courseData._id}">Watch</button><button onclick="unenrollCourse(this);" data-coursename="${courseName}">Unenroll</button>`;
+            mycoursesContainer.appendChild(courseCard);
+        }
     } catch (error) {
         console.error('Failed to fetch user data:', error);
     }
@@ -500,10 +546,25 @@ async function listCourses() {
 
 listCourses();
 
-function courseHandler(button) {
+async function courseHandler(button) {
     localStorage.setItem('courseName', button.dataset.coursename);
     localStorage.setItem('coursePlaylist', button.dataset.courseplaylist);
     localStorage.setItem('courseId', button.dataset.courseid);
+
+    const res = await fetch('/api/addcourse', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            courseName: button.dataset.coursename
+        })
+    });
+
+    const data = await res.json();
+    if (data.error) {
+        console.error("Error adding course:", data.error);
+    }
 
     window.location.href = window.location.origin + '/private/Player/player.html';
 }
