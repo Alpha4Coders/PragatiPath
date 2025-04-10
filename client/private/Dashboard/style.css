@@ -411,6 +411,7 @@ section {
 
 .note-item {
     display: flex;
+    flex-direction: row; /* Default layout */
     justify-content: space-between;
     align-items: center;
     padding: 12px 15px;
@@ -418,7 +419,22 @@ section {
     border-radius: 12px;
     border-left: 4px solid #66aebb;
     transition: all 0.2s;
+    font-size: 1rem;
+    gap: 8px;
+    word-wrap: break-word;
+    flex-wrap: wrap;
 }
+
+/* Responsive changes for smaller devices */
+@media (max-width: 600px) {
+    .note-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+}
+
 
 .note-item:hover {
     background: rgba(49, 117, 174, 0.15);
