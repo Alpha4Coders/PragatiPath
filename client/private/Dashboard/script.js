@@ -282,8 +282,15 @@ function showSection(targetId) {
 
 const navLinks = document.querySelectorAll('.nav-anchor');
 navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
+    link.parentElement.addEventListener('click', (e) => {
         e.preventDefault();
+        document.querySelectorAll('.link-dock').forEach(item => {
+            item.classList.remove('active');
+        })
+        document.querySelectorAll('.links').forEach(item => {
+            item.classList.remove('active');
+        })
+        link.parentElement.classList.add('active');
         const targetId = link.getAttribute('data-target');
         showSection(targetId);
     });

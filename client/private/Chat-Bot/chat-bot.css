@@ -31,6 +31,12 @@
   animation: pulse 2s infinite ease-in-out;
 }
 
+@media (max-width: 760px) {
+  #chat-bubble {
+    bottom: 70px;
+  }
+}
+
 @keyframes pulse {
   0% {
     box-shadow: 0 0 10px var(--chat-glow-color);
