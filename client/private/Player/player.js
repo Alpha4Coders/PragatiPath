@@ -78,9 +78,34 @@ async function fetchCourseData() {
     document.getElementById('channel-link').target = "_blank";
     document.getElementById('channel-link').rel = "noopener noreferrer";
     document.getElementById('channel-link').textContent = chdata.channelTitle;
+
+    checkCertificateEligibility(data.name);
 }
 
-// Enroll button action
+function checkCertificateEligibility(courseName) {
+    const courseId = localStorage.getItem("courseId");
+    const watched = parseInt(localStorage.getItem(`watched_${courseId}`)) || 0;
+    const estimatedDuration = 1200;
+
+    if (watched >= estimatedDuration) {
+        const container = document.querySelector('.video-preview');
+
+        const certBtn = document.createElement('button');
+        certBtn.innerText = "🎉 Download Certificate";
+        certBtn.className = "enroll-btn";
+        certBtn.style.marginTop = "1rem";
+
+        certBtn.onclick = () => {
+            localStorage.setItem("cert_name", "Your Name");
+            localStorage.setItem("cert_course", courseName);
+            localStorage.setItem("cert_date", new Date().toLocaleDateString());
+            window.location.href = "cert.html";
+        };
+
+        container.appendChild(certBtn);
+    }
+}
+
 function enrollCourse() {
     alert("Thank you for enrolling! Welcome to PragiPath.");
 }
@@ -104,7 +129,6 @@ function onPlayerStateChange(event) {
         clearInterval(timer);
     }
 }
-
 
 const ytScript = document.createElement('script');
 ytScript.src = "https://www.youtube.com/iframe_api";

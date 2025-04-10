@@ -1,15 +1,16 @@
-document.getElementById('name').innerText = "Archis";
-document.getElementById('course').innerText = "Drip irrigation";
-document.getElementById('date').innerText = "April 9, 2025";
+function generateCertificate(name, course, date) {
+    document.getElementById('name').innerText = name;
+    document.getElementById('course').innerText = course;
+    document.getElementById('date').innerText = date;
 
-function downloadCertificate() {
-    const element = document.getElementById('certificate'); 
+    const element = document.getElementById('certificate');
     const opt = {
         margin: 0,
-        filename: 'certificate.pdf',
+        filename: `${name}_certificate.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
     };
+
     html2pdf().set(opt).from(element).save();
 }

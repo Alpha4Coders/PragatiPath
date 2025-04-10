@@ -667,8 +667,6 @@ button:hover {
   flex-shrink: 0;
 } */
 
-
-
 #send-button:hover {
   background: #38798e;
 }
@@ -943,7 +941,7 @@ input[type="file"]:hover {
 .send-btn:hover {
   background: #47c4e3; 
 }
-.course-card .progress-bar {
+/*.course-card .progress-bar {
   height: 6px;
   background: #ddd;
   border-radius: 3px;
@@ -956,7 +954,7 @@ input[type="file"]:hover {
   background: linear-gradient(to right, #4caf50, #8bc34a);
   transition: width 0.3s ease;
 }
-
+*/
 
 @media (max-width: 768px) {
   .dashboard-content {
