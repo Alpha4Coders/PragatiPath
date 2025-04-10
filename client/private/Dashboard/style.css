@@ -42,6 +42,13 @@ header {
   object-fit: cover;
 }
 
+.profilePic img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #fefae0;
+}
+
 .nav-link {
   list-style: none;
 }

@@ -227,7 +227,10 @@ window.addEventListener('load', async () => {
         const req = await fetch('/api/userinfo');
         const res = await req.json();
         userData = res;
+        console.log("User Data:", userData);
+        
         document.getElementById("username").innerText = userData.fullName;
+        document.getElementById("profilePic").innerHTML = `<img src="${userData.imgUrl}" alt="Profile Picture" />`;
     } catch (error) {
         console.error('Failed to fetch user data:', error);
     }

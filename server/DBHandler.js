@@ -78,7 +78,10 @@ class UserDB {
                 return res.status(404).send("User not found");
             }
 
-            res.json(userDbStore);
+            const uinfo = await clerk.clerkClient.users.getUser(req.auth.userId); // also append profile image URL
+            const out = { name: userDbStore.name, fullName: userDbStore.fullName, enrolledCourses: userDbStore.enrolledCourses, completedCourses: userDbStore.completedCourses, imgUrl: uinfo.imageUrl };
+
+            res.json(out);
         } catch (error) {
             console.log("[UserDB Error] endpoint_userInfo failed to fetch user info", error);
             res.json({ error: "Internal server error" });
