@@ -426,10 +426,14 @@ function getWeather() {
 
 // Map Initialization
 function initMap(lat, lon) {
-    const map = L.map('map').setView([lat, lon], 10);
+    const map = L.map('map', {
+        zoomControl: true
+    }).setView([lat, lon], 10);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data © OpenStreetMap contributors',
+    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © OpenStreetMap contributors, SRTM | Map style: © OpenTopoMap (CC-BY-SA)',
+        keepBuffer: 8,
     }).addTo(map);
 
     L.marker([lat, lon]).addTo(map)
