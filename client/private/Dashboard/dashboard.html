@@ -283,10 +283,14 @@
 
     <script>
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: navigator.language || navigator.userLanguage || 'en',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
+        new google.translate.TranslateElement({
+            pageLanguage: navigator.language || navigator.userLanguage || 'en',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+            includedLanguages: 'en,hi,bn,ta,te,ml,kn,gu,pa,mr,or,ur,as,ne,sd', // Languages to include if you wish more
+            floatPosition: 0 
+        }, 'google_translate_element');
+        
         }
         googleTranslateElementInit();
     </script>
