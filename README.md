@@ -26,6 +26,9 @@ Make sure you have a `.env` file configured.
 
 ---
 
+##Live preview 
+https://pragatipath.onrender.com/
+
 ## 👨‍💻 Authors
 
 - [**Rouvik Maji**](https://github.com/Rouvik) – *Backend Developer*
