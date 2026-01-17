@@ -260,24 +260,27 @@ main {
 }
 
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 20px;
-    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: 95%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
 .team-card {
-    width: 190px;
-    height: 254px;
-    transition: all 0.4s;
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
+    width: 280px;
+    height: 380px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     font-size: 30px;
     font-weight: 900;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .team-card:hover .desc-card {
@@ -289,31 +292,26 @@ main {
 }
 
 #vikash-card {
-    background-color: #D5FFD0;
-}
-
-#rajbeer-card {
-    background: rgb(103, 225, 255);
+    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
 }
 
 #archis-card {
-    background-color: #FCD5CE;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
 }
 
-#rouvik-card {
-    background-color: #E0BBE4;
+#pyraghaw-card {
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
 }
 
 .team-card:hover,
 #vikash-card:hover,
-#rajbeer-card:hover,
 #archis-card:hover,
-#rouvik-card:hover {
-    border-radius: 15px;
+#pyraghaw-card:hover {
+    border-radius: 30px;
     cursor: pointer;
-    transform: scale(1.2);
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.705);
-    background: rgb(103, 151, 255);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to bottom, #141e30, #243b55);
 }
 
 .desc-card {
@@ -776,7 +774,7 @@ main {
     }
 
     .cards {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 
     .team-card {
@@ -807,7 +805,7 @@ main {
     .hero-text img {
         width: 80%;
     }
-    
+
     .footer-image {
         display: none !important;
     }
@@ -906,7 +904,8 @@ main {
     }
 
     .cards {
-        display: flex; /*this was missing that's why it's not working*/
+        display: flex;
+        /*this was missing that's why it's not working*/
         flex-direction: column;
         align-items: center;
         gap: 25px;

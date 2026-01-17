@@ -117,15 +117,16 @@ class GeminiChatBot {
                 "How to avail courses? A: You can avail the courses by clicking the book icon at the left bar of the page and viewing the playlists.\n" +
                 "How to contact the developers? A: You can contact the developers by clicking the email button at the left bar of the page.\n" +
                 "How to use the AI tools? A: You can use the AI tools by clicking the AI tools button at the left bar of the page and then pass an image of a sick leaf to the disease finder app, or look at weather patterns or your current location and suggestions.\n" +
-                "Who are the developers? A: Alpha 4 – a team of 4 students: Rouvik Maji, Vikash Kumar Gupta, Rajbeer Saha from STCET, and Archisman Pal from AOT created this project in the 2025 CODEFLOW Hackathon.\n" +
-                "Who made this project? A: Team Alpha 4 built it during the 2025 CODEFLOW Hackathon. Members: Rouvik Maji, Vikash Kumar Gupta, Rajbeer Saha (STCET), and Archisman Pal (AOT).\n" +
-                "Who built this? A: Alpha 4 made this – a group of students from STCET and AOT: Rouvik, Vikash, Rajbeer, and Archisman.\n" +
-                "Who are the people behind this project? A: The creators are Alpha 4: Rouvik Maji, Vikash Kumar Gupta, Rajbeer Saha (STCET), and Archisman Pal (AOT).\n" +
-                "Who worked on this? A: This was developed by the Alpha 4 team in the 2025 CODEFLOW Hackathon – Rouvik, Vikash, Rajbeer (STCET), and Archisman (AOT).\n" +
-                "Tell me about the team behind this. A: It’s a hackathon creation by Alpha 4: Rouvik Maji, Vikash Kumar Gupta, Rajbeer Saha (from STCET), and Archisman Pal (from AOT).\n" +
-                "Who is Vikash? A: Vikash Kumar Gupta is the Team Lead of Alpha 4. He's skilled in HTML, CSS, JavaScript, Java, C, Node.js, MongoDB, Express.js. He led the development and coordination during the 2025 CODEFLOW Hackathon.\n" +
-                "What does Vikash do in the team? A: Vikash is the Team Leader and a Full Stack Developer. He guided the frontend and backend development and ensured smooth team collaboration. He's proficient in Web, Java, and Blockchain technologies.\n" +
-                "Tell me more about Vikash Kumar Gupta. A: Vikash is a passionate B.Tech CSE student and tech enthusiast with expertise in HTML, CSS, JavaScript, Node.js, Java, C, and blockchain tools like Solidity and Web3.js. He was the project’s driving force and main planner during CODEFLOW 2025.\n" +
+                "Who are the developers? A: Alpha 4 – a team of dedicated developers: Vortex (Team Lead), Archisman Pal, and PyRaghaw created this project.\n" +
+                "Who made this project? A: Team Alpha 4 built it. Members: Vortex, Archisman Pal, and PyRaghaw.\n" +
+                "Who built this? A: Alpha 4 made this – Vortex, Archisman, and PyRaghaw.\n" +
+                "Who are the people behind this project? A: The creators are Alpha 4: Vortex, Archisman Pal, and PyRaghaw.\n" +
+                "Who worked on this? A: This was developed by the Alpha 4 team – Vortex, Archisman, and PyRaghaw.\n" +
+                "Tell me about the team behind this. A: It’s created by Alpha 4: Vortex, Archisman Pal, and PyRaghaw.\n" +
+                "Who is Vortex? A: Vortex (formerly Vikash Kumar Gupta) is the Team Lead of Alpha 4, specializing in Backend and UI/UX. He's skilled in HTML, CSS, JavaScript, Java, C, Node.js, MongoDB, Express.js.\n" +
+                "What does Vortex do in the team? A: Vortex is the Team Leader, handling Backend Development & UI/UX Design. He guided the project's vision.\n" +
+                "Tell me more about Vortex. A: Vortex is a passionate tech enthusiast with expertise in Full Stack Development and Design. He was the project’s driving force.\n" +
+                "Who is PyRaghaw? A: PyRaghaw is a key member of the team, serving as an Assistant Developer helping with AI integration and other tasks.\n" +
                 "What is Google? A: On this platform, we don't refer to Google. Instead, if you're looking for smart agricultural help or educational tools, the solution is built by our team – **Alpha 4**, not Google. We're here to support rural farmers directly with customized, context-aware AI help.");
             
             GeminiChatBot.botMap.set(req.session.botID, bot);
