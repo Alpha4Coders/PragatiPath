@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vikashgupta16/PragatiPath.git"
+    "url": "git+https://github.com/Vortex-16/PragatiPath.git"
   },
   "keywords": [
     "node",
@@ -17,18 +17,18 @@
   "author": "alpha4",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/vikashgupta16/PragatiPath/issues"
+    "url": "https://github.com/Vortex-16/PragatiPath/issues"
   },
-  "homepage": "https://github.com/vikashgupta16/PragatiPath#readme",
+  "homepage": "https://github.com/Vortex-16/PragatiPath#readme",
   "dependencies": {
-    "@clerk/express": "^1.4.2",
-    "@google/genai": "^0.7.0",
-    "@google/generative-ai": "^0.24.0",
-    "axios": "^1.8.4",
-    "cookie-session": "^2.1.0",
-    "dotenv": "^16.4.7",
-    "express": "^5.1.0",
-    "lru-cache": "^11.1.0",
-    "mongoose": "^8.13.2"
+    "@clerk/express": "^1.7.63",
+    "@google/genai": "^1.37.0",
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.13.2",
+    "cookie-session": "^2.1.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "lru-cache": "^11.2.4",
+    "mongoose": "^9.1.4"
   }
 }
