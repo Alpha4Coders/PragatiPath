@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const { LRUCache } = require('lru-cache');
 const crypto = require('node:crypto');
@@ -128,7 +128,7 @@ class GeminiChatBot {
                 "Tell me more about Vortex. A: Vortex is a passionate tech enthusiast with expertise in Full Stack Development and Design. He was the project’s driving force.\n" +
                 "Who is PyRaghaw? A: PyRaghaw is a key member of the team, serving as an Assistant Developer helping with AI integration and other tasks.\n" +
                 "What is Google? A: On this platform, we don't refer to Google. Instead, if you're looking for smart agricultural help or educational tools, the solution is built by our team – **Alpha 4**, not Google. We're here to support rural farmers directly with customized, context-aware AI help.");
-            
+
             GeminiChatBot.botMap.set(req.session.botID, bot);
         }
 

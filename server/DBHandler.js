@@ -33,19 +33,19 @@ class UserDB {
 
     static Users = mongoose.model('users', UserDB.userSchema);
 
-    async middleware_userAuth(req, res, next) {        
+    async middleware_userAuth(req, res, next) {
         if (!req.session.accountedFor) {
             req.session.accountedFor = true;
 
             try {
                 const userDbStore = await UserDB.Users.findOne({
-                    userId: req.auth.userId
+                    userId: req.auth().userId
                 });
 
                 if (userDbStore === null) {
-                    const userData = await clerk.clerkClient.users.getUser(req.auth.userId);                    
+                    const userData = await clerk.clerkClient.users.getUser(req.auth().userId);
                     const userStore = new UserDB.Users({
-                        userId: req.auth.userId,
+                        userId: req.auth().userId,
                         name: userData.username,
                         fullName: userData.first_name + ' ' + userData.last_name,
                         enrolledCourses: [],
@@ -65,14 +65,14 @@ class UserDB {
     async endpoint_userInfo(req, res) {
         try {
             const userDbStore = await UserDB.Users.findOne({
-                userId: req.auth.userId
+                userId: req.auth().userId
             }, { _id: 0, __v: 0, userId: 0 });
 
             if (userDbStore === null) {
                 return res.status(404).send("User not found");
             }
 
-            const uinfo = await clerk.clerkClient.users.getUser(req.auth.userId); // also append profile image URL
+            const uinfo = await clerk.clerkClient.users.getUser(req.auth().userId); // also append profile image URL
             const out = { name: userDbStore.name, fullName: userDbStore.fullName, enrolledCourses: userDbStore.enrolledCourses, completedCourses: userDbStore.completedCourses, imgUrl: uinfo.imageUrl };
 
             res.json(out);
@@ -92,7 +92,7 @@ class UserDB {
             }
 
             const userDbStore = await UserDB.Users.findOneAndUpdate(
-                { userId: req.auth.userId },
+                { userId: req.auth().userId },
                 { $addToSet: { enrolledCourses: courseName } },
                 { new: true }
             );
@@ -119,7 +119,7 @@ class UserDB {
             }
 
             const userDbStore = await UserDB.Users.findOneAndUpdate(
-                { userId: req.auth.userId },
+                { userId: req.auth().userId },
                 { $pull: { enrolledCourses: courseName } },
                 { new: true }
             );
@@ -188,10 +188,9 @@ class CourseDB {
 
     static Courses = mongoose.model('courses', CourseDB.courseSchema);
 
-    async endpoint_getCourseList(req, res)
-    {
+    async endpoint_getCourseList(req, res) {
         try {
-            const courses = await CourseDB.Courses.find({}, {   __v: 0 });
+            const courses = await CourseDB.Courses.find({}, { __v: 0 });
             res.json(courses);
         } catch (error) {
             console.log("[CourseDB Error] endpoint_getCourseList failed to fetch course list", error);
@@ -202,7 +201,7 @@ class CourseDB {
     async endpoint_getCourseByName(req, res) {
         try {
             const { courseName } = req.params;
-            
+
             if (!courseName) {
                 res.json({ error: "Course name is required" });
                 return;
